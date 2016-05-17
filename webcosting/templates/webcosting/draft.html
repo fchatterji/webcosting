@@ -1,0 +1,71 @@
+    DEGRE_INTEGRATION_CHOIX = (
+        ('très bas', 'très bas'),
+        ('bas', 'bas'),
+        ('moyen', 'moyen'),
+        ('élevé', 'élevé'),
+        ('très élevé', 'très élevé'),
+        ('très très élevé', 'très très élevé'),
+    )
+
+    degre_integration = models.CharField(
+        'degré d\'intégration',
+        max_length=100,
+        choices=DEGRE_INTEGRATION_CHOIX,
+        default='moyen'
+        )
+
+    coefficient_integration = models.DecimalField(
+        max_digits=5,
+        decimal_places=3,
+        default=None,
+        blank=True,
+        null=True,
+    )
+
+    type_attribut = models.ForeignKey(
+        TypeAttribut,
+        on_delete=models.CASCADE,
+        default=None
+    )
+
+
+
+
+
+
+class DegreIntegationAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'type_attribut',
+        'degre_integration',
+        'coefficient_integration'
+        )
+
+    list_display_links = ('id',)
+
+    list_editable = (
+        'degre_integration',
+        'coefficient_integration'
+        )
+
+admin.site.register(DegreIntegration, DegreIntegationAdmin)
+
+
+
+
+
+
+
+    def _charge_de_travail_cocomo(self):
+
+        effort_simple = self.effort_simple
+
+        moyenne_degres_integration = self.degres_integration.aggregate(Avg('coefficient_integration'))
+
+        moyenne_degres_integration = Decimal(moyenne_degres_integration['coefficient_integration__avg'])
+
+        effort_intermediaire = moyenne_degres_integration * effort_simple
+
+        return effort_intermediaire
+
+    charge_de_travail_cocomo = property(_charge_de_travail_cocomo)

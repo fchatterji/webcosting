@@ -1,0 +1,42 @@
+
+{% extends "webcosting/base.html" %}
+
+      {% block nav %}
+      <ul class="nav nav-pills">
+        <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
+        <li role="presentation" class="active"><a href="">Projet</a></li>
+        <li role="presentation"><a href="{% url 'webcosting:degre_integration' projet.id %}">Estimation Cocomo</a></li>
+        <li role="presentation"><a href="{% url 'webcosting:fonction' projet.id %}">Estimation Point de fonction</a></li>
+      </ul>
+      {% endblock %}
+
+
+{% block content %}
+
+
+<shell>
+
+  <p> Nom du projet: {{ projet.nom_projet }} </p>
+  <p> Type de projet: {{ projet.type_projet }} </p>
+  <p> Language de programmation: {{ projet.language_de_programmation }} </p>
+  <p> Facteur d'ajustement: {{ projet.facteur_ajustement }} </p>  
+
+
+
+
+
+    <p> Charge de travail selon la méthode Cocomo {{ projet.charge_de_travail_cocomo }}
+    </p>
+
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:degre_integration' projet.id %}';" role="button">Méthode Cocomo</button>
+
+
+    <p> Charge de travail selon la méthode des points de fonctions {{ projet.charge_de_travail_point_de_fonction }} </p>
+
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:fonction' projet.id %}';" role="button">Méthode des points de fonctions</button>
+
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
+
+</shell>
+
+{% endblock %}
