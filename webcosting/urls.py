@@ -43,36 +43,22 @@ urlpatterns = [
 
 
 
-
-
-    # ex: /webcosting/projet/2/degre_integration
+    # webcosting/projet/2/cocomo
     url(
-        r'^projet/(?P<projet_id>[0-9]+)/degre_integration/$', 
-        views.DegreIntegrationView.as_view(), 
-        name='degre_integration'
+        r'^projet/(?P<pk>[0-9]+)/cocomo/$', 
+        views.CocomoView.as_view(),
+        name='cocomo'
+        ),
+
+    # webcosting/projet/2/cocomo/2/update
+    url(
+        r'^projet/(?P<pk>[0-9]+)/cocomo/update/$', 
+        views.CocomoUpdate.as_view(),
+        name='cocomo_update'
         ),
 
 
-    # webcosting/projet/2/degre_integration/add
-    url(
-        r'^projet/(?P<projet_id>[0-9]+)/degre_integration/add/$', 
-        views.DegreIntegrationCreate.as_view(),
-        name='degre_integration_add'
-        ),
 
-    # webcosting/projet/2/degre_integration/2/update
-    url(
-        r'^projet/(?P<projet_id>[0-9]+)/degre_integration/(?P<pk>[0-9]+)/update/$', 
-        views.DegreIntegrationUpdate.as_view(),
-        name='degre_integration_update'
-        ),
-
-    # webcosting/projet/2/fonction/2/delete
-    url(
-        r'^projet/(?P<projet_id>[0-9]+)/degre_integration/(?P<pk>[0-9]+)/delete/$',
-        views.DegreIntegrationDelete.as_view(),
-        name='degre_integration_delete'
-        ),
 
 
 

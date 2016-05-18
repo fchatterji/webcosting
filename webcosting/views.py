@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import Projet, Fonction, DegreIntegration
+from .models import Projet, Fonction
 
 from django.core.urlresolvers import reverse_lazy
 
@@ -42,61 +42,21 @@ class ProjetDelete(DeleteView):
 
 
 
+class CocomoView(generic.DetailView):
+    model = Projet
+    context_object_name = 'projet'
+    template_name = 'webcosting/cocomo.html'
 
 
+class CocomoCreate(CreateView):
+    model = Projet
+    fields = ['nom_projet', 'type_projet', 'taille_du_projet', 'language_de_programmation', 'fiab']
+    template_name = 'webcosting/cocomo_form.html'
 
-class DegreIntegrationView(generic.ListView):
-    model = DegreIntegration
-    template_name = 'webcosting/degreintegration.html'
-    context_object_name = 'all_degres_integrations'
-
-    def get_queryset(self):
-        self.projet = get_object_or_404(Projet, pk=self.kwargs['projet_id'])
-        return DegreIntegration.objects.filter(projet=self.projet)
-
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(DegreIntegrationView, self).get_context_data(**kwargs)
-        # Add in the project
-        context['projet'] = self.projet
-        return context
-
-
-class DegreIntegrationCreate(CreateView):
-    model = DegreIntegration
-    fields = [
-        'fiab', 
-    ]
-
-    def form_valid(self, form):
-        form.instance.projet_id = self.kwargs.get('projet_id')
-        return super(DegreIntegrationCreate, self).form_valid(form)
-
-
-
-
-class DegreIntegrationUpdate(UpdateView):
-    model = DegreIntegration
-    fields = [
-        'fiab'
-    ]
-
-
-class DegreIntegrationDelete(DeleteView):
-    model = DegreIntegration
-    
-    def get_success_url(self):
-        if 'projet_id' in self.kwargs:
-            projet_id = self.kwargs['projet_id']
-
-        return reverse('webcosting:degre_integration', kwargs={'projet_id':projet_id})
-
-
-
-
-
-
+class CocomoUpdate(UpdateView):
+    model = Projet
+    fields = ['nom_projet', 'type_projet', 'taille_du_projet', 'language_de_programmation', 'fiab']
+    template_name = 'webcosting/cocomo_form.html'
 
 
 

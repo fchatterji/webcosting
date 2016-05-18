@@ -38,8 +38,6 @@ class TypeAttributAdmin(admin.ModelAdmin):
 
 admin.site.register(TypeAttribut, TypeAttributAdmin)
 
-admin.site.register(DegreIntegration)
-
 
 
 #points de fonctions

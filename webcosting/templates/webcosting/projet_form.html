@@ -1,13 +1,6 @@
 
 {% extends "webcosting/base.html" %}
 
-      {% block nav %}
-      <ul class="nav nav-pills">
-        <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
-        <li role="presentation" class="active"><a href="">Projet</a></li>
-      </ul>
-      {% endblock %}
-
 
 {% block content %}
 
@@ -16,7 +9,7 @@
     {% include 'webcosting/form-template.html' %}
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">Créer le projet</button>
         </div>
 
     </div>

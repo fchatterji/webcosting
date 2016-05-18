@@ -1,0 +1,19 @@
+{% extends "webcosting/base.html" %}
+
+
+{% block content %}
+
+<p> Nom du projet: {{ projet.nom_projet }} </p>
+<p> Fiabilité du logiciel: {{ projet.fiab }} </p>
+
+
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:cocomo_update' projet.id %}';" role="button">Configurer le projet</button>
+
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:fonction' projet.id %}';" role="button">Méthode des points de fonctions</button>
+
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
+
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet_update' projet.id %}';" role="button">Modifier le projet</button><a href="">
+
+
+{% endblock %}

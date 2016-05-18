@@ -15,13 +15,13 @@ class Coefficient(models.Model):
         return self.type_projet + '-' + self.type_coefficient
 
     TYPE_PROJET_CHOIX = (
-        ('OR', 'organique'),
-        ('SD', 'semi-détaché'),
-        ('EM', 'embarqué'),
+        ('organique', 'organique'),
+        ('semi-détaché', 'semi-détaché'),
+        ('embarqué', 'embarqué'),
     )
 
     type_projet = models.CharField(
-        max_length=2, 
+        max_length=10, 
         choices=TYPE_PROJET_CHOIX,
         default='organique'
         )
@@ -222,11 +222,27 @@ class Projet(models.Model):
         )
 
 
+    FIAB_CHOIX = (
+        (0.75, 'très bas: 0.75'),
+        )
+
+    fiab = models.DecimalField(
+        max_digits=5,
+        decimal_places=3,
+        choices=FIAB_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+
+
     def get_absolute_url(self):
         return reverse('webcosting:projet', kwargs={'pk':self.pk})
 
 
     def _point_de_fonction_brut(self):
+
         fonctions = Fonction.objects.filter(projet=self.id)
         
         point_de_fonction_brut = 0
@@ -239,7 +255,7 @@ class Projet(models.Model):
 
 
     def _point_de_fonction_net(self):
-        
+
         return self.facteur_ajustement * self.point_de_fonction_brut
 
     point_de_fonction_net = property(_point_de_fonction_net)
@@ -301,7 +317,7 @@ class Projet(models.Model):
 
         effort_simple = self.effort_simple
 
-        moyenne_degres_integration = 1
+        moyenne_degres_integration = self.fiab / 1.0
 
         effort_intermediaire = moyenne_degres_integration * effort_simple
 
@@ -386,33 +402,17 @@ class Fonction(models.Model):
     point_de_fonction_brut = property(_point_de_fonction_brut)
 
 
+    def _point_de_fonction_net(self):
+
+        return self.projet.facteur_ajustement * self.point_de_fonction_brut
+
+    point_de_fonction_net = property(_point_de_fonction_net)
 
 
 
-class DegreIntegration(models.Model):
-
-    def __unicode__(self):
-        return self.degre_integration + ' ' + str(self.coefficient_integration)
-
-    projet = models.ForeignKey(
-        Projet,
-        on_delete=models.CASCADE,
-        default=None
-        )
 
 
-    FIAB_CHOIX = (
-        (0.75, 'très bas: 0.75'),
-        )
 
-    fiab = models.DecimalField(
-        max_digits=5,
-        decimal_places=3,
-        choices=FIAB_CHOIX,
-        default=None,
-        blank=True,
-        null=True,
-        )
 
 
 
