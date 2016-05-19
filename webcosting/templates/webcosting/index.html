@@ -16,7 +16,8 @@
         <p>Date de modification: {{ projet.date_dernier_enregistrement }}</p>
 
         <p>
-          <a href="{% url 'webcosting:projet_update' projet.id %}" class="btn btn-default" role="button">Modifier</a> 
+          <a href="{% url 'webcosting:cocomo_update' projet.id %}" class="btn btn-primary" role="button">Estimation Cocomo</a> 
+          <a href="{% url 'webcosting:fonction' projet.id %}" class="btn btn-primary" role="button">Estimation points de fonctions</a> 
 
           <form action="{% url 'webcosting:projet_delete' projet.id %}" method="post">
             {% csrf_token %}

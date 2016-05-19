@@ -3,6 +3,9 @@
 
 {% block content %}
 
+
+{{ projet.nom_projet }}
+
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {% include 'webcosting/form-template.html' %}
@@ -14,6 +17,11 @@
     </div>
 </form>
 
+
+<button class="btn btn-default" onclick="location.href='{% url 'webcosting:fonction' projet.id %}';" role="button">Méthode des points de fonctions</button>
+
 <button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
+
+<button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet' projet.id %}';" role="button">Synthèse du projet</button><a href="">
 
 {% endblock %}

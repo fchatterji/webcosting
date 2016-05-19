@@ -7,27 +7,31 @@
 
 <shell>
 
+  <h1>Synthèse des caractéristiques du projet </h1> 
   <p> Nom du projet: {{ projet.nom_projet }} </p>
-  <p> pf brut: {{ projet.point_de_fonction_brut }} </p>
-  <p> pf net: {{ projet.point_de_fonction_net }} </p>
-  <p> lignes de code: {{ projet.ligne_de_code }} </p>
-  <p> Charge de travail selon la méthode des points de fonctions {{ projet.charge_de_travail_point_de_fonction }} </p>
+  <p> points de fonctions bruts: {{ projet.point_de_fonction_brut }} </p>
+  <p> points de fonctions nets: {{ projet.point_de_fonction_net }} </p>
+  <p> milliers de lignes de code: {{ projet.ligne_de_code }} </p>
+  <p> taille du projet: {{ projet.taille_projet }}</p>
+  <p> Charge de travail en homme-jour selon la méthode des points de fonctions: {{ projet.charge_de_travail_point_de_fonction }} </p>
+  <p> Language de programmation: {{ projet.language_de_programmation }} </p>
+  
+  <p> type de projet: {{ projet.type_projet }}</p>
+  <p> effort simple en homme mois: {{ projet.effort_simple }}</p>
+  <p> Charge de travail selon la méthode Cocomo: {{ projet.charge_de_travail_cocomo }}</p>
+  <p> temps de développement: {{ projet.temps_de_developpement }}</p>
 
-  <p> effort simple: {{ projet.effort_simple }}</p>
-  <p> Charge de travail selon la méthode Cocomo {{ projet.charge_de_travail_cocomo }}</p>
-  <p> temps de développement {{ projet.temps_de_developpement }}</p>
 
 
 
 
-
-    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:cocomo' projet.id %}';" role="button">Méthode Cocomo</button>
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:cocomo_update' projet.id %}';" role="button">Méthode Cocomo</button>
 
     <button class="btn btn-default" onclick="location.href='{% url 'webcosting:fonction' projet.id %}';" role="button">Méthode des points de fonctions</button>
 
     <button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
 
-    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet_update' projet.id %}';" role="button">Modifier le projet</button><a href=""></a>
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet_update' projet.id %}';" role="button">Renommer le projet</button><a href=""></a>
 </shell>
 
 {% endblock %}

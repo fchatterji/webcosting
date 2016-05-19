@@ -43,11 +43,11 @@
 {% endfor %}
 
 
-    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:cocomo' projet.id %}';" role="button">Méthode cocomo</button>
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:cocomo_update' projet.id %}';" role="button">Méthode cocomo</button>
 
     <button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
 
-    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet' projet.id %}';" role="button">Projet</button><a href="">
+    <button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet' projet.id %}';" role="button">Synthèse du projet</button><a href="">
 
     
 {% endblock %}

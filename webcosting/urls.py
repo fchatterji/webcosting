@@ -43,14 +43,8 @@ urlpatterns = [
 
 
 
-    # webcosting/projet/2/cocomo
-    url(
-        r'^projet/(?P<pk>[0-9]+)/cocomo/$', 
-        views.CocomoView.as_view(),
-        name='cocomo'
-        ),
 
-    # webcosting/projet/2/cocomo/2/update
+    # webcosting/projet/2/cocomo/update
     url(
         r'^projet/(?P<pk>[0-9]+)/cocomo/update/$', 
         views.CocomoUpdate.as_view(),
@@ -92,6 +86,28 @@ urlpatterns = [
         ),
 
 
+
+
+    # ex: /webcosting/projet/2/fonctions
+    url(
+        r'^projet/(?P<pk>[0-9]+)/fonctions/$', 
+        views.FonctionFormSetView.as_view(), 
+        name='fonctions_formset'
+        ),
+
+    # webcosting/projet/2/fonctions/add
+    url(
+        r'^projet/(?P<pk>[0-9]+)/fonctions/add/$', 
+        views.FonctionsCreateView.as_view(),
+        name='fonctions_add'
+        ),
+
+    # webcosting/projet/2/fonctions/update
+    url(
+        r'^projet/(?P<pk>[0-9]+)/fonctions/update/$', 
+        views.FonctionsUpdateView.as_view(),
+        name='fonctions_update'
+        ),
+
+
     ]
-
-

@@ -1,14 +1,16 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import View
 
 from .models import Projet, Fonction
 
 from django.core.urlresolvers import reverse_lazy
 
-
+from .forms import ProjetForm
 
 
 class IndexView(generic.ListView):
@@ -27,12 +29,12 @@ class ProjetView(generic.DetailView):
 
 class ProjetCreate(CreateView):
     model = Projet
-    fields = ['nom_projet', 'type_projet', 'taille_du_projet', 'language_de_programmation']
+    fields = ['nom_projet']
 
 
 class ProjetUpdate(UpdateView):
     model = Projet
-    fields = ['nom_projet', 'type_projet', 'taille_du_projet', 'language_de_programmation']
+    fields = ['nom_projet']
 
 
 class ProjetDelete(DeleteView):
@@ -42,20 +44,14 @@ class ProjetDelete(DeleteView):
 
 
 
-class CocomoView(generic.DetailView):
-    model = Projet
-    context_object_name = 'projet'
-    template_name = 'webcosting/cocomo.html'
-
-
 class CocomoCreate(CreateView):
     model = Projet
-    fields = ['nom_projet', 'type_projet', 'taille_du_projet', 'language_de_programmation', 'fiab']
+    fields = ['type_projet', 'fiab', 'donn', 'cplx']
     template_name = 'webcosting/cocomo_form.html'
 
 class CocomoUpdate(UpdateView):
     model = Projet
-    fields = ['nom_projet', 'type_projet', 'taille_du_projet', 'language_de_programmation', 'fiab']
+    fields = ['type_projet', 'fiab', 'donn', 'cplx']
     template_name = 'webcosting/cocomo_form.html'
 
 
@@ -114,3 +110,57 @@ class FonctionDelete(DeleteView):
 
         return reverse('webcosting:fonction', kwargs={'projet_id':projet_id})
         
+
+
+
+
+
+from extra_views import InlineFormSetView
+
+class FonctionFormSetView(InlineFormSetView):
+    model = Projet
+    inline_model = Fonction
+    template_name = 'webcosting/fonctions_formset.html'
+
+
+
+
+
+
+from extra_views import InlineFormSet, CreateWithInlinesView, UpdateWithInlinesView
+from extra_views.generic import GenericInlineFormSet
+
+
+class FonctionInline(InlineFormSet):
+    model = Fonction
+    can_delete = False
+    fields = [
+        'nom_fonction',
+        'type_fonction',
+        'nombre_sous_fonction',
+        'nombre_donnees_elementaires',
+        ]
+
+class FonctionsCreateView(CreateWithInlinesView):
+    model = Projet
+    fields = ['nom_projet']
+    inlines = [FonctionInline]
+    template_name = 'webcosting/fonctions_formset.html'
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
+
+class FonctionsUpdateView(UpdateWithInlinesView):
+
+    model = Projet
+    fields = ['nom_projet']
+    inlines = [FonctionInline]
+    template_name = 'webcosting/fonctions_formset.html'
+
+    def get_success_url(self):
+
+        return self.object.get_absolute_url()
+
+
+

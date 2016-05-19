@@ -58,7 +58,7 @@ class LanguageDeProgrammationAdmin(admin.ModelAdmin):
 admin.site.register(LanguageDeProgrammation, LanguageDeProgrammationAdmin)
 
 
-admin.site.register(TailleDuProjet)
+admin.site.register(TailleProjet)
 admin.site.register(TypeFonction)
 admin.site.register(Fonction)
 

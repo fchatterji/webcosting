@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.db.models import Avg
-from decimal import Decimal
 from django.core.urlresolvers import reverse
 
 
@@ -39,9 +38,7 @@ class Coefficient(models.Model):
         default='A',
         )
 
-    valeur_coefficient = models.DecimalField(
-        max_digits=5,
-        decimal_places=3,
+    valeur_coefficient = models.FloatField(
         default=None,
         )
 
@@ -86,17 +83,17 @@ class LanguageDeProgrammation(models.Model):
 
 
 
-class TailleDuProjet(models.Model):
+class TailleProjet(models.Model):
 
     def __unicode__(self):
-        return str(self.taille_du_projet)
+        return str(self.taille_projet)
 
-    taille_du_projet = models.CharField(
+    taille_projet = models.CharField(
         'taille du projet',
         max_length=30,
         )
 
-    charge_de_travail = models.IntegerField(
+    charge_de_travail = models.PositiveIntegerField(
         'charge de travail en jour homme par points de fonctions'
         )
 
@@ -129,19 +126,19 @@ class CalculPointDeFonction(models.Model):
         default=None
         )
 
-    nombre_sous_fonction_deb = models.IntegerField(
+    nombre_sous_fonction_deb = models.PositiveIntegerField(
         default=0
         )
 
-    nombre_sous_fonction_fin = models.IntegerField(
+    nombre_sous_fonction_fin = models.PositiveIntegerField(
         default=0
         )
 
-    nombre_donnees_elementaires_deb = models.IntegerField(
+    nombre_donnees_elementaires_deb = models.PositiveIntegerField(
         default=0
         )
 
-    nombre_donnees_elementaires_fin = models.IntegerField(
+    nombre_donnees_elementaires_fin = models.PositiveIntegerField(
         default=0
         )
 
@@ -157,7 +154,7 @@ class CalculPointDeFonction(models.Model):
         default='moyen'
         )
 
-    nombre_point_de_fonction = models.IntegerField(
+    nombre_point_de_fonction = models.PositiveIntegerField(
         'nombre de points de fonctions',
         default=0
         )
@@ -199,8 +196,8 @@ class Projet(models.Model):
 
 
 
-    taille_du_projet = models.ForeignKey(
-        TailleDuProjet,
+    taille_projet = models.ForeignKey(
+        TailleProjet,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
@@ -213,9 +210,7 @@ class Projet(models.Model):
         null=True,
         )
 
-    facteur_ajustement = models.DecimalField(
-        max_digits=5,
-        decimal_places=3,
+    facteur_ajustement = models.IntegerField(
         default=1,
         blank=True,
         null=True,
@@ -224,17 +219,48 @@ class Projet(models.Model):
 
     FIAB_CHOIX = (
         (0.75, 'très bas: 0.75'),
+        (0.88, 'bas: 0.88'),
+        (1.00, 'moyen: 1.00'),
+        (1.15, 'élevé: 1.15'),
+        (1.40, 'très élevé: 1.40'),
         )
 
-    fiab = models.DecimalField(
-        max_digits=5,
-        decimal_places=3,
+    fiab = models.FloatField(
         choices=FIAB_CHOIX,
         default=None,
         blank=True,
         null=True,
         )
 
+    DONN_CHOIX = (
+        (0.94, 'bas (0.94)'),
+        (1.00, 'moyen (1.00)'),
+        (1.08, 'élevé (1.08)'),
+        (1.16, 'très élevé (1.16)'),
+        )
+
+    donn = models.FloatField(
+        choices=DONN_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+    CPLX_CHOIX = (
+        (0.70, 'très bas: 0.70'),
+        (0.85, 'bas: 0.85'),
+        (1.00, 'moyen: 1.00'),
+        (1.15, 'élevé: 1.15'),
+        (1.30, 'très élevé: 1.30'),
+        (1.65, 'très très élevé: 1.65'),
+        )
+
+    cplx = models.FloatField(
+        choices=CPLX_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
 
 
     def get_absolute_url(self):
@@ -264,9 +290,9 @@ class Projet(models.Model):
 
     def _charge_de_travail_point_de_fonction(self):
 
-        taille_du_projet = TailleDuProjet.objects.get(taille_du_projet=self.taille_du_projet)
+        taille_projet = TailleProjet.objects.get(taille_projet=self.taille_projet)
 
-        charge_de_travail = taille_du_projet.charge_de_travail
+        charge_de_travail = taille_projet.charge_de_travail
 
         return charge_de_travail * self.point_de_fonction_net
 
@@ -280,13 +306,15 @@ class Projet(models.Model):
 
         ligne_de_code_par_points_de_fonctions = language_de_programmation.ligne_de_code_par_points_de_fonctions
         
-        return ligne_de_code_par_points_de_fonctions * self.point_de_fonction_net / 1000
+        return ligne_de_code_par_points_de_fonctions * self.point_de_fonction_net / 1000.0
 
     ligne_de_code = property(_ligne_de_code)
 
 
 
     def _effort_simple(self):
+
+
 
         A = Coefficient.objects.get(
             type_coefficient='A',
@@ -306,7 +334,9 @@ class Projet(models.Model):
 
         effort_simple = A * (ligne_de_code ** B)
 
-        return effort_simple      
+        effort_simple = round(effort_simple, 2)
+
+        return effort_simple     
 
     effort_simple = property(_effort_simple)  
 
@@ -320,6 +350,8 @@ class Projet(models.Model):
         moyenne_degres_integration = self.fiab / 1.0
 
         effort_intermediaire = moyenne_degres_integration * effort_simple
+
+        effort_intermediaire = round(effort_intermediaire, 2)
 
         return effort_intermediaire
 
@@ -345,6 +377,8 @@ class Projet(models.Model):
         effort_simple = self.effort_simple
 
         temps_de_developpement = C * (effort_simple ** D)
+
+        temps_de_developpement = round(temps_de_developpement, 2)
         
         return temps_de_developpement
 
@@ -374,14 +408,14 @@ class Fonction(models.Model):
         default=None
         )
 
-    nombre_sous_fonction = models.IntegerField(
+    nombre_sous_fonction = models.PositiveIntegerField(
         'nombre de sous-fonctions (\'GDR ou SLD\')',
-        default=0
+        default=0,
         )
 
-    nombre_donnees_elementaires = models.IntegerField(
+    nombre_donnees_elementaires = models.PositiveIntegerField(
         'nombre de données élémentaires',
-        default=0
+        default=0,
         )
 
     def get_absolute_url(self):
