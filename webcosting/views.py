@@ -84,11 +84,19 @@ class FonctionCreate(CreateView):
         'nombre_donnees_elementaires'
     ]
 
+
+
     def form_valid(self, form):
         form.instance.projet_id = self.kwargs.get('projet_id')
         return super(FonctionCreate, self).form_valid(form)
 
-
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(FonctionCreate, self).get_context_data(**kwargs)
+        # Add in the project
+        self.projet = get_object_or_404(Projet, pk=self.kwargs['projet_id'])
+        context['projet'] = self.projet
+        return context
 
 
 class FonctionUpdate(UpdateView):
@@ -99,6 +107,15 @@ class FonctionUpdate(UpdateView):
         'nombre_sous_fonction',
         'nombre_donnees_elementaires'
     ]
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(FonctionUpdate, self).get_context_data(**kwargs)
+        # Add in the project
+        self.projet = get_object_or_404(Projet, pk=self.kwargs['projet_id'])
+        context['projet'] = self.projet
+        return context
+
 
 
 class FonctionDelete(DeleteView):

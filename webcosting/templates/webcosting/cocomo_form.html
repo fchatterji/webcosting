@@ -1,22 +1,38 @@
+
 {% extends "webcosting/base.html" %}
+
+
+{% block navigation %}
+
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
+  <li role="presentation" class="active"><a href="{% url 'webcosting:cocomo_update' projet.id %}">Estimation Cocomo</a></li>
+  <li role="presentation" ><a href="{% url 'webcosting:fonction' projet.id %}" role="button">Estimation points de fonctions</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:index' %}">Retourner à la liste des projets</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:projet' projet.id %}">Synthèse du projet</a></li>
+
+</ul>
+
+{% endblock %}
 
 
 {% block content %}
 
-
 {{ projet.nom_projet }}
 
 <form class="form-horizontal" action="" method="post">
+
     {% csrf_token %}
     {% include 'webcosting/form-template.html' %}
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success">Submit</button>
         </div>
-
     </div>
-</form>
 
+</form>
 
 <button class="btn btn-default" onclick="location.href='{% url 'webcosting:fonction' projet.id %}';" role="button">Méthode des points de fonctions</button>
 

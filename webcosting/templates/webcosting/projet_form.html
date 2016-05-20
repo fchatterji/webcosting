@@ -2,17 +2,29 @@
 {% extends "webcosting/base.html" %}
 
 
+{% block navigation %}
+
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
+  <li role="presentation" class="active"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
+</ul>
+
+{% endblock %}
+
+
 {% block content %}
 
 <form class="form-horizontal" action="" method="post">
+
     {% csrf_token %}
     {% include 'webcosting/form-template.html' %}
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success">Sauvegarder</button>
         </div>
-
     </div>
+    
 </form>
 
 <button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
