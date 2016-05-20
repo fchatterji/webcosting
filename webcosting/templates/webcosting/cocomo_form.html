@@ -9,9 +9,7 @@
   <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
   <li role="presentation" class="active"><a href="{% url 'webcosting:cocomo_update' projet.id %}">Estimation Cocomo</a></li>
   <li role="presentation" ><a href="{% url 'webcosting:fonction' projet.id %}" role="button">Estimation points de fonctions</a></li>
-  <li role="presentation"><a href="{% url 'webcosting:index' %}">Retourner à la liste des projets</a></li>
   <li role="presentation"><a href="{% url 'webcosting:projet' projet.id %}">Synthèse du projet</a></li>
-
 </ul>
 
 {% endblock %}
@@ -19,7 +17,8 @@
 
 {% block content %}
 
-{{ projet.nom_projet }}
+
+<h1>Projet {{ projet.nom_projet }} </h1>
 
 <form class="form-horizontal" action="" method="post">
 
@@ -34,10 +33,5 @@
 
 </form>
 
-<button class="btn btn-default" onclick="location.href='{% url 'webcosting:fonction' projet.id %}';" role="button">Méthode des points de fonctions</button>
-
-<button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
-
-<button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet' projet.id %}';" role="button">Synthèse du projet</button><a href="">
 
 {% endblock %}

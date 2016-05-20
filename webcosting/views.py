@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 
 from .models import Projet, Fonction
 
@@ -19,6 +19,10 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Projet.objects.all()
+
+
+class NoProjetDefault(generic.TemplateView):
+    template_name = 'webcosting/default.html'
 
 
 class ProjetView(generic.DetailView):

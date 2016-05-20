@@ -13,6 +13,14 @@ urlpatterns = [
         name='index'
         ),
 
+    # ex: /webcosting/default
+    url(
+        r'^projet/default/$', 
+        views.NoProjetDefault.as_view(), 
+        name='default'
+        ),
+
+
     # webcosting/projet/add
     url(
         r'^projet/add/$', 
@@ -54,9 +62,6 @@ urlpatterns = [
 
 
 
-
-
-
     # ex: /webcosting/projet/2/fonction
     url(
         r'^projet/(?P<projet_id>[0-9]+)/fonction/$', 
@@ -83,30 +88,6 @@ urlpatterns = [
         r'^projet/(?P<projet_id>[0-9]+)/fonction/(?P<pk>[0-9]+)/delete/$',
         views.FonctionDelete.as_view(),
         name='fonction_delete'
-        ),
-
-
-
-
-    # ex: /webcosting/projet/2/fonctions
-    url(
-        r'^projet/(?P<pk>[0-9]+)/fonctions/$', 
-        views.FonctionFormSetView.as_view(), 
-        name='fonctions_formset'
-        ),
-
-    # webcosting/projet/2/fonctions/add
-    url(
-        r'^projet/(?P<pk>[0-9]+)/fonctions/add/$', 
-        views.FonctionsCreateView.as_view(),
-        name='fonctions_add'
-        ),
-
-    # webcosting/projet/2/fonctions/update
-    url(
-        r'^projet/(?P<pk>[0-9]+)/fonctions/update/$', 
-        views.FonctionsUpdateView.as_view(),
-        name='fonctions_update'
         ),
 
 

@@ -1,0 +1,25 @@
+
+{% extends "webcosting/base.html" %}
+
+
+{% block navigation %}
+
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
+  <li role="presentation" class="active"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:default' %}">Estimation Cocomo</a></li>
+  <li role="presentation" ><a href="{% url 'webcosting:default' %}" role="button">Estimation points de fonctions</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:default' %}">Synthèse du projet</a></li>
+</ul>
+
+{% endblock %}
+
+{% block content %}
+
+<p>Vous devez d'abord choisir un projet<p>
+
+<a href="{% url 'webcosting:projet_add' %}" class="btn btn-primary" role="button">Ajouter un nouveau projet</a>
+
+<a href="{% url 'webcosting:index' %}" class="btn btn-primary" role="button">Revenir à la liste des projets</a>
+
+{% endblock %}

@@ -5,11 +5,11 @@
 {% block navigation %}
 
 <ul class="nav nav-pills">
+
   <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
   <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
   <li role="presentation"><a href="{% url 'webcosting:cocomo_update' projet.id %}">Estimation Cocomo</a></li>
   <li role="presentation" ><a href="{% url 'webcosting:fonction' projet.id %}" role="button">Estimation points de fonctions</a></li>
-  <li role="presentation"><a href="{% url 'webcosting:index' %}">Retourner à la liste des projets</a></li>
   <li role="presentation" class="active"><a href="{% url 'webcosting:projet' projet.id %}">Synthèse du projet</a></li>
 
 </ul>
@@ -21,28 +21,47 @@
 
 <shell>
 
-  <h1>Synthèse des caractéristiques du projet </h1>
+  <h1>Projet {{ projet.nom_projet }} </h1>
 
-  <p> Nom du projet: {{ projet.nom_projet }} </p>
-  <p> points de fonctions bruts: {{ projet.point_de_fonction_brut }} </p>
-  <p> points de fonctions nets: {{ projet.point_de_fonction_net }} </p>
-  <p> milliers de lignes de code: {{ projet.ligne_de_code }} </p>
-  <p> taille du projet: {{ projet.taille_projet }}</p>
-  <p> Charge de travail en homme-jour selon la méthode des points de fonctions: {{ projet.charge_de_travail_point_de_fonction }} </p>
-  <p> Language de programmation: {{ projet.language_de_programmation }} </p>
-  
-  <p> type de projet: {{ projet.type_projet }}</p>
-  <p> effort simple en homme mois: {{ projet.effort_simple }}</p>
-  <p> Charge de travail selon la méthode Cocomo: {{ projet.charge_de_travail_cocomo }}</p>
-  <p> temps de développement: {{ projet.temps_de_developpement }}</p>
+  <h2> Méthode des points de fonctions </h2>
 
-  <button class="btn btn-default" onclick="location.href='{% url 'webcosting:cocomo_update' projet.id %}';" role="button">Méthode Cocomo</button>
 
-  <button class="btn btn-default" onclick="location.href='{% url 'webcosting:fonction' projet.id %}';" role="button">Méthode des points de fonctions</button>
+    <div class="panel panel-info">
+      <div class="panel-heading">Points de fonctions bruts</div>
+      <div class="panel-body">{{ projet.point_de_fonction_brut }}</div>
+    </div> 
 
-  <button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
+    <div class="panel panel-info">
+      <div class="panel-heading">Points de fonctions nets</div>
+      <div class="panel-body">{{ projet.point_de_fonction_net }}</div>
+    </div> 
 
-  <button class="btn btn-default" onclick="location.href='{% url 'webcosting:projet_update' projet.id %}';" role="button">Renommer le projet</button><a href=""></a>
+    <div class="panel panel-info">
+      <div class="panel-heading">Milliers de lignes de code</div>
+      <div class="panel-body">{{ projet.ligne_de_code }}</div>
+    </div> 
+
+    <div class="panel panel-info">
+      <div class="panel-heading">Charge de travail selon la méthode des points de fonctions</div>
+      <div class="panel-body">{{ projet.charge_de_travail_point_de_fonction }} hommes/jours</div>
+    </div>   
+
+  <h2> Méthode Cocomo </h2>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">Effort simple</div>
+      <div class="panel-body">{{ projet.effort_simple }} homme/mois</div>
+    </div>  
+
+    <div class="panel panel-info">
+      <div class="panel-heading">Charge de travail selon la méthode Cocomo</div>
+      <div class="panel-body">{{ projet.charge_de_travail_cocomo }} homme/mois</div>
+    </div>  
+
+    <div class="panel panel-info">
+      <div class="panel-heading">temps de développement</div>
+      <div class="panel-body">{{ projet.temps_de_developpement }} mois</div>
+    </div>  
 
 </shell>
 

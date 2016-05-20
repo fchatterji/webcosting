@@ -7,12 +7,23 @@
 <ul class="nav nav-pills">
   <li role="presentation" class="active"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
   <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:default' %}">Estimation Cocomo</a></li>
+  <li role="presentation" ><a href="{% url 'webcosting:default' %}" role="button">Estimation points de fonctions</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:default' %}">Synthèse du projet</a></li>
 </ul>
 
 {% endblock %}
 
 
 {% block content %}
+
+
+<div class="jumbotron">
+  <h1>Webcosting</h1>
+  <p>Webcosting est un outil d'estimation de la charge de travail pour des projets informatiques</p>
+  <p><a class="btn btn-primary btn-lg" href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></p>
+</div>
+
 
 <div class="row">
 
@@ -28,6 +39,7 @@
 
         <p><a href="{% url 'webcosting:fonction' projet.id %}" class="btn btn-primary" role="button">Estimation points de fonctions</a></p>
 
+        <p><a href="{% url 'webcosting:projet' projet.id %}" class="btn btn-primary" role="button">Synthèse</a></p>
         <p>
           <form action="{% url 'webcosting:projet_delete' projet.id %}" method="post">
             {% csrf_token %}

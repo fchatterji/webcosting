@@ -7,7 +7,11 @@
 <ul class="nav nav-pills">
   <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
   <li role="presentation" class="active"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:default' %}">Estimation Cocomo</a></li>
+  <li role="presentation" ><a href="{% url 'webcosting:default' %}" role="button">Estimation points de fonctions</a></li>
+  <li role="presentation"><a href="{% url 'webcosting:default' %}">Synthèse du projet</a></li>
 </ul>
+
 
 {% endblock %}
 
@@ -26,8 +30,5 @@
     </div>
     
 </form>
-
-<button class="btn btn-default" onclick="location.href='{% url 'webcosting:index' %}';" role="button">Retourner à la liste des projets</button>
-
 
 {% endblock %}
