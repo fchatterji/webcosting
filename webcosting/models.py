@@ -232,6 +232,7 @@ class Projet(models.Model):
         null=True,
         )
 
+
     DONN_CHOIX = (
         (0.94, 'bas (0.94)'),
         (1.00, 'moyen (1.00)'),
@@ -245,6 +246,7 @@ class Projet(models.Model):
         blank=True,
         null=True,
         )
+
 
     CPLX_CHOIX = (
         (0.70, 'très bas: 0.70'),
@@ -262,6 +264,7 @@ class Projet(models.Model):
         null=True,
         )
 
+
     TEMP_CHOIX = (
         (1.00, 'moyen: 1.00'),
         (1.11, 'élevé: 1.11'),
@@ -269,12 +272,13 @@ class Projet(models.Model):
         (1.66, 'très très élevé: 1.66'),
         )
 
-    temp= models.FloatField(
+    temp = models.FloatField(
         choices=TEMP_CHOIX,
         default=None,
         blank=True,
         null=True,
         )
+
 
     ESPA_CHOIX = (
         (1.00, 'moyen: 1.00'),
@@ -290,6 +294,7 @@ class Projet(models.Model):
         null=True,
         )
 
+
     VIRT_CHOIX = (
         (0.87, 'bas: 0.87'),
         (1.00, 'moyen: 1.00'),
@@ -304,6 +309,7 @@ class Projet(models.Model):
         null=True,
         )
 
+
     CSYS_CHOIX = (
         (0.87, 'bas: 0.87'),
         (1.00, 'moyen: 1.00'),
@@ -317,6 +323,7 @@ class Projet(models.Model):
         blank=True,
         null=True,
         )
+
 
     APTA_CHOIX = (
         (1.46, 'très bas: 1.46'),
@@ -348,6 +355,7 @@ class Projet(models.Model):
         blank=True,
         null=True,
         )
+
 
     APTP_CHOIX = (
         (1.42, 'très bas: 1.42'),

@@ -50,12 +50,12 @@ class ProjetDelete(DeleteView):
 
 class CocomoCreate(CreateView):
     model = Projet
-    fields = ['type_projet', 'fiab', 'donn', 'cplx']
+    fields = ['type_projet', 'fiab', 'donn', 'cplx', 'temp', 'espa', 'virt', 'csys', 'apta', 'expa', 'aptp', 'expv', 'expl', 'pmod', 'olog', 'dreq']
     template_name = 'webcosting/cocomo_form.html'
 
 class CocomoUpdate(UpdateView):
     model = Projet
-    fields = ['type_projet', 'fiab', 'donn', 'cplx']
+    fields = ['type_projet', 'fiab', 'donn', 'cplx', 'temp', 'espa', 'virt', 'csys', 'apta', 'expa', 'aptp', 'expv', 'expl', 'pmod', 'olog', 'dreq']
     template_name = 'webcosting/cocomo_form.html'
 
 
