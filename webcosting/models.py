@@ -262,6 +262,187 @@ class Projet(models.Model):
         null=True,
         )
 
+    TEMP_CHOIX = (
+        (1.00, 'moyen: 1.00'),
+        (1.11, 'élevé: 1.11'),
+        (1.30, 'très élevé: 1.30'),
+        (1.66, 'très très élevé: 1.66'),
+        )
+
+    temp= models.FloatField(
+        choices=TEMP_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+    ESPA_CHOIX = (
+        (1.00, 'moyen: 1.00'),
+        (1.06, 'élevé: 1.06'),
+        (1.21, 'très élevé: 1.21'),
+        (1.56, 'très très élevé: 1.56'),
+        )
+
+    espa = models.FloatField(
+        choices=ESPA_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+    VIRT_CHOIX = (
+        (0.87, 'bas: 0.87'),
+        (1.00, 'moyen: 1.00'),
+        (1.15, 'élevé: 1.15'),
+        (1.30, 'très élevé: 1.30'),
+        )
+
+    virt = models.FloatField(
+        choices=VIRT_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+    CSYS_CHOIX = (
+        (0.87, 'bas: 0.87'),
+        (1.00, 'moyen: 1.00'),
+        (1.07, 'élevé: 1.07'),
+        (1.15, 'très élevé: 1.15'),
+        )
+
+    csys = models.FloatField(
+        choices=CSYS_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+    APTA_CHOIX = (
+        (1.46, 'très bas: 1.46'),
+        (1.19, 'bas: 1.19'),
+        (1.00, 'moyen: 1.00'),
+        (0.86, 'élevé: 0.86'),
+        (0.71, 'très élevé: 0.71'),
+        )
+
+    apta = models.FloatField(
+        choices=APTA_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+
+    EXPA_CHOIX = (
+        (1.29, 'très bas: 1.29'),
+        (1.13, 'bas: 1.13'),
+        (1.00, 'moyen: 1.00'),
+        (0.91, 'élevé: 0.91'),
+        (0.82, 'très élevé: 0.82'),
+        )
+
+    expa = models.FloatField(
+        choices=EXPA_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+    APTP_CHOIX = (
+        (1.42, 'très bas: 1.42'),
+        (1.17, 'bas: 1.17'),
+        (1.00, 'moyen: 1.00'),
+        (0.86, 'élevé: 0.86'),
+        (0.70, 'très élevé: 0.70'),
+        )
+
+    aptp = models.FloatField(
+        choices=APTP_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+
+
+    EXPV_CHOIX = (
+        (1.21, 'très bas: 1.21'),
+        (1.10, 'bas: 1.10'),
+        (1.00, 'moyen: 1.00'),
+        (0.95, 'élevé: 0.95'),
+        )
+
+    expv = models.FloatField(
+        choices=EXPV_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+
+    EXPL_CHOIX = (
+        (1.14, 'très bas: 1.14'),
+        (1.07, 'bas: 1.07'),
+        (1.00, 'moyen: 1.00'),
+        (0.95, 'élevé: 0.95'),
+        )
+
+    expl = models.FloatField(
+        choices=EXPL_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+
+    PMOD_CHOIX = (
+        (1.24, 'très bas: 1.24'),
+        (1.10, 'bas: 1.10'),
+        (1.00, 'moyen: 1.00'),
+        (0.91, 'élevé: 0.91'),
+        (0.82, 'très élevé: 0.82'),
+        )
+
+    pmod = models.FloatField(
+        choices=PMOD_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+
+    OLOG_CHOIX = (
+        (1.24, 'très bas: 1.24'),
+        (1.10, 'bas: 1.10'),
+        (1.00, 'moyen: 1.00'),
+        (0.91, 'élevé: 0.91'),
+        (0.83, 'très élevé: 0.83'),
+        )
+
+    olog = models.FloatField(
+        choices=OLOG_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
+
+    DREQ_CHOIX = (
+        (1.23, 'très bas: 1.23'),
+        (1.08, 'bas: 1.08'),
+        (1.00, 'moyen: 1.00'),
+        (1.04, 'élevé: 1.04'),
+        (1.10, 'très élevé: 1.10'),
+        )
+
+    dreq = models.FloatField(
+        choices=DREQ_CHOIX,
+        default=None,
+        blank=True,
+        null=True,
+        )
+
 
     def get_absolute_url(self):
         return reverse('webcosting:projet', kwargs={'pk':self.pk})
