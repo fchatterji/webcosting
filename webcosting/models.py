@@ -1,11 +1,9 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
 
 from django.db import models
-from django.db.models import Avg
 from django.core.urlresolvers import reverse
-
 
 
 class Coefficient(models.Model):
@@ -20,7 +18,7 @@ class Coefficient(models.Model):
     )
 
     type_projet = models.CharField(
-        max_length=10, 
+        max_length=10,
         choices=TYPE_PROJET_CHOIX,
         default='organique'
         )
@@ -33,7 +31,7 @@ class Coefficient(models.Model):
     )
 
     type_coefficient = models.CharField(
-        max_length=2, 
+        max_length=2,
         choices=TYPE_COEFFICIENT_CHOIX,
         default='A',
         )
@@ -41,30 +39,6 @@ class Coefficient(models.Model):
     valeur_coefficient = models.FloatField(
         default=None,
         )
-
-
-
-
-class TypeAttribut(models.Model):
-
-    def __unicode__(self):
-        return self.type_attribut_detail
-
-    type_attribut = models.CharField(
-        'type de l\'attribut', 
-        max_length=100, 
-        default=None
-        )
-
-    type_attribut_detail = models.CharField(
-        'type détaillé de l\'attribut', 
-        max_length=100, 
-        default=None, 
-        blank=True, 
-        null=True
-        )
-
-
 
 
 class LanguageDeProgrammation(models.Model):
@@ -77,10 +51,9 @@ class LanguageDeProgrammation(models.Model):
         max_length=100
         )
 
-    ligne_de_code_par_points_de_fonctions = models.IntegerField(
+    ligne_de_code = models.IntegerField(
         'ligne de code par points de fonctions',
         )
-
 
 
 class TailleProjet(models.Model):
@@ -166,17 +139,16 @@ class Projet(models.Model):
         return self.nom_projet
 
     nom_projet = models.CharField(
-        'nom du projet', 
+        'nom du projet',
         max_length=100,
         default=None
         )
-    
+
     date_dernier_enregistrement = models.DateTimeField(
         'date du dernier enregistrement',
         auto_now=True,
         null=True
-        ) 
-
+        )
 
     ORGANIQUE = 'OR'
     SEMIDETACHE = 'SD'
@@ -189,12 +161,10 @@ class Projet(models.Model):
     )
 
     type_projet = models.CharField(
-        max_length=2, 
+        max_length=2,
         choices=TYPE_PROJET_CHOIX,
         default='organique'
         )
-
-
 
     taille_projet = models.ForeignKey(
         TailleProjet,
@@ -216,7 +186,6 @@ class Projet(models.Model):
         null=True,
         )
 
-
     FIAB_CHOIX = (
         (0.75, 'très bas: 0.75'),
         (0.88, 'bas: 0.88'),
@@ -227,11 +196,10 @@ class Projet(models.Model):
 
     fiab = models.FloatField(
         choices=FIAB_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     DONN_CHOIX = (
         (0.94, 'bas (0.94)'),
@@ -242,11 +210,10 @@ class Projet(models.Model):
 
     donn = models.FloatField(
         choices=DONN_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     CPLX_CHOIX = (
         (0.70, 'très bas: 0.70'),
@@ -259,11 +226,10 @@ class Projet(models.Model):
 
     cplx = models.FloatField(
         choices=CPLX_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     TEMP_CHOIX = (
         (1.00, 'moyen: 1.00'),
@@ -274,11 +240,10 @@ class Projet(models.Model):
 
     temp = models.FloatField(
         choices=TEMP_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     ESPA_CHOIX = (
         (1.00, 'moyen: 1.00'),
@@ -289,11 +254,10 @@ class Projet(models.Model):
 
     espa = models.FloatField(
         choices=ESPA_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     VIRT_CHOIX = (
         (0.87, 'bas: 0.87'),
@@ -304,11 +268,10 @@ class Projet(models.Model):
 
     virt = models.FloatField(
         choices=VIRT_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     CSYS_CHOIX = (
         (0.87, 'bas: 0.87'),
@@ -319,11 +282,10 @@ class Projet(models.Model):
 
     csys = models.FloatField(
         choices=CSYS_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     APTA_CHOIX = (
         (1.46, 'très bas: 1.46'),
@@ -335,11 +297,10 @@ class Projet(models.Model):
 
     apta = models.FloatField(
         choices=APTA_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     EXPA_CHOIX = (
         (1.29, 'très bas: 1.29'),
@@ -351,11 +312,10 @@ class Projet(models.Model):
 
     expa = models.FloatField(
         choices=EXPA_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     APTP_CHOIX = (
         (1.42, 'très bas: 1.42'),
@@ -367,12 +327,10 @@ class Projet(models.Model):
 
     aptp = models.FloatField(
         choices=APTP_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
-
 
     EXPV_CHOIX = (
         (1.21, 'très bas: 1.21'),
@@ -383,11 +341,10 @@ class Projet(models.Model):
 
     expv = models.FloatField(
         choices=EXPV_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     EXPL_CHOIX = (
         (1.14, 'très bas: 1.14'),
@@ -398,11 +355,10 @@ class Projet(models.Model):
 
     expl = models.FloatField(
         choices=EXPL_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     PMOD_CHOIX = (
         (1.24, 'très bas: 1.24'),
@@ -414,11 +370,10 @@ class Projet(models.Model):
 
     pmod = models.FloatField(
         choices=PMOD_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     OLOG_CHOIX = (
         (1.24, 'très bas: 1.24'),
@@ -430,11 +385,10 @@ class Projet(models.Model):
 
     olog = models.FloatField(
         choices=OLOG_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
-
 
     DREQ_CHOIX = (
         (1.23, 'très bas: 1.23'),
@@ -446,20 +400,19 @@ class Projet(models.Model):
 
     dreq = models.FloatField(
         choices=DREQ_CHOIX,
-        default=None,
+        default=1.00,
         blank=True,
         null=True,
         )
 
-
     def get_absolute_url(self):
-        return reverse('webcosting:projet', kwargs={'pk':self.pk})
+        return reverse('webcosting:projet', kwargs={'pk': self.pk})
 
 
     def _point_de_fonction_brut(self):
 
         fonctions = Fonction.objects.filter(projet=self.id)
-        
+
         point_de_fonction_brut = 0
         for fonction in fonctions:
             point_de_fonction_brut += fonction.point_de_fonction_brut
@@ -476,7 +429,6 @@ class Projet(models.Model):
     point_de_fonction_net = property(_point_de_fonction_net)
 
 
-
     def _charge_de_travail_point_de_fonction(self):
 
         taille_projet = TailleProjet.objects.get(taille_projet=self.taille_projet)
@@ -488,22 +440,29 @@ class Projet(models.Model):
     charge_de_travail_point_de_fonction = property(_charge_de_travail_point_de_fonction)
 
 
+    def _charge_de_travail_point_de_fonction_mois(self):
 
-    def _ligne_de_code(self):
+        return self.charge_de_travail_point_de_fonction / 30.0
+
+    charge_de_travail_point_de_fonction_mois = property(_charge_de_travail_point_de_fonction_mois)
+
+
+    def _kilo_ligne_de_code(self):
 
         language_de_programmation = LanguageDeProgrammation.objects.get(language_de_programmation=self.language_de_programmation)
 
-        ligne_de_code_par_points_de_fonctions = language_de_programmation.ligne_de_code_par_points_de_fonctions
-        
-        return ligne_de_code_par_points_de_fonctions * self.point_de_fonction_net / 1000.0
+        ligne_de_code = language_de_programmation.ligne_de_code
 
-    ligne_de_code = property(_ligne_de_code)
+        ligne_de_code = ligne_de_code * self.point_de_fonction_net
 
+        kilo_ligne_de_code = ligne_de_code / 1000.0
+
+        return kilo_ligne_de_code
+
+    kilo_ligne_de_code = property(_kilo_ligne_de_code)
 
 
     def _effort_simple(self):
-
-
 
         A = Coefficient.objects.get(
             type_coefficient='A',
@@ -519,17 +478,15 @@ class Projet(models.Model):
 
         B = B.valeur_coefficient
 
-        ligne_de_code = self.ligne_de_code
+        ligne_de_code = self.kilo_ligne_de_code
 
         effort_simple = A * (ligne_de_code ** B)
 
         effort_simple = round(effort_simple, 2)
 
-        return effort_simple     
+        return effort_simple
 
-    effort_simple = property(_effort_simple)  
-
-
+    effort_simple = property(_effort_simple)
 
 
     def _charge_de_travail_cocomo(self):
@@ -568,7 +525,7 @@ class Projet(models.Model):
         temps_de_developpement = C * (effort_simple ** D)
 
         temps_de_developpement = round(temps_de_developpement, 2)
-        
+
         return temps_de_developpement
 
     temps_de_developpement = property(_temps_de_developpement)
@@ -608,7 +565,7 @@ class Fonction(models.Model):
         )
 
     def get_absolute_url(self):
-        return reverse('webcosting:fonction', kwargs={'projet_id':self.projet.id })
+        return reverse('webcosting:fonction', kwargs={'projet_id': self.projet.id})
 
 
     def _point_de_fonction_brut(self):
@@ -630,14 +587,4 @@ class Fonction(models.Model):
         return self.projet.facteur_ajustement * self.point_de_fonction_brut
 
     point_de_fonction_net = property(_point_de_fonction_net)
-
-
-
-
-
-
-
-
-
-
-
+    

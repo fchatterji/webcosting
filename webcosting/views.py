@@ -1,16 +1,12 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
 
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import View, TemplateView
 
 from .models import Projet, Fonction
 
 from django.core.urlresolvers import reverse_lazy
-
-from .forms import ProjetForm
 
 
 class IndexView(generic.ListView):
@@ -33,12 +29,12 @@ class ProjetView(generic.DetailView):
 
 class ProjetCreate(CreateView):
     model = Projet
-    fields = ['nom_projet']
+    fields = ['nom_projet', 'taille_projet', 'language_de_programmation']
 
 
 class ProjetUpdate(UpdateView):
     model = Projet
-    fields = ['nom_projet']
+    fields = ['nom_projet', 'taille_projet', 'language_de_programmation']
 
 
 class ProjetDelete(DeleteView):
@@ -46,20 +42,16 @@ class ProjetDelete(DeleteView):
     success_url = reverse_lazy('webcosting:index')
 
 
-
-
 class CocomoCreate(CreateView):
     model = Projet
     fields = ['type_projet', 'fiab', 'donn', 'cplx', 'temp', 'espa', 'virt', 'csys', 'apta', 'expa', 'aptp', 'expv', 'expl', 'pmod', 'olog', 'dreq']
     template_name = 'webcosting/cocomo_form.html'
 
+
 class CocomoUpdate(UpdateView):
     model = Projet
     fields = ['type_projet', 'fiab', 'donn', 'cplx', 'temp', 'espa', 'virt', 'csys', 'apta', 'expa', 'aptp', 'expv', 'expl', 'pmod', 'olog', 'dreq']
     template_name = 'webcosting/cocomo_form.html'
-
-
-
 
 
 class FonctionView(generic.ListView):
@@ -82,13 +74,11 @@ class FonctionView(generic.ListView):
 class FonctionCreate(CreateView):
     model = Fonction
     fields = [
-        'nom_fonction', 
+        'nom_fonction',
         'type_fonction',
         'nombre_sous_fonction',
         'nombre_donnees_elementaires'
     ]
-
-
 
     def form_valid(self, form):
         form.instance.projet_id = self.kwargs.get('projet_id')
@@ -106,7 +96,7 @@ class FonctionCreate(CreateView):
 class FonctionUpdate(UpdateView):
     model = Fonction
     fields = [
-        'nom_fonction', 
+        'nom_fonction',
         'type_fonction',
         'nombre_sous_fonction',
         'nombre_donnees_elementaires'
@@ -121,67 +111,11 @@ class FonctionUpdate(UpdateView):
         return context
 
 
-
 class FonctionDelete(DeleteView):
     model = Fonction
-    
+
     def get_success_url(self):
         if 'projet_id' in self.kwargs:
             projet_id = self.kwargs['projet_id']
 
-        return reverse('webcosting:fonction', kwargs={'projet_id':projet_id})
-        
-
-
-
-
-
-from extra_views import InlineFormSetView
-
-class FonctionFormSetView(InlineFormSetView):
-    model = Projet
-    inline_model = Fonction
-    template_name = 'webcosting/fonctions_formset.html'
-
-
-
-
-
-
-from extra_views import InlineFormSet, CreateWithInlinesView, UpdateWithInlinesView
-from extra_views.generic import GenericInlineFormSet
-
-
-class FonctionInline(InlineFormSet):
-    model = Fonction
-    can_delete = False
-    fields = [
-        'nom_fonction',
-        'type_fonction',
-        'nombre_sous_fonction',
-        'nombre_donnees_elementaires',
-        ]
-
-class FonctionsCreateView(CreateWithInlinesView):
-    model = Projet
-    fields = ['nom_projet']
-    inlines = [FonctionInline]
-    template_name = 'webcosting/fonctions_formset.html'
-
-    def get_success_url(self):
-        return self.object.get_absolute_url()
-
-
-class FonctionsUpdateView(UpdateWithInlinesView):
-
-    model = Projet
-    fields = ['nom_projet']
-    inlines = [FonctionInline]
-    template_name = 'webcosting/fonctions_formset.html'
-
-    def get_success_url(self):
-
-        return self.object.get_absolute_url()
-
-
-
+        return reverse('webcosting:fonction', kwargs={'projet_id': projet_id})

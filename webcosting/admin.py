@@ -3,8 +3,9 @@ from django.contrib import admin
 # Register your models here.
 from .models import *
 
-#cocomo
+# cocomo
 class CoefficientAdmin(admin.ModelAdmin):
+
     list_display = (
         'id',
         'type_projet',
@@ -22,37 +23,20 @@ class CoefficientAdmin(admin.ModelAdmin):
 
 admin.site.register(Coefficient, CoefficientAdmin)
 
-class TypeAttributAdmin(admin.ModelAdmin):
-    list_display = (
-        'id',
-        'type_attribut',
-        'type_attribut_detail'
-        )
-
-    list_display_links = ('id',)
-
-    list_editable = (
-        'type_attribut',
-        'type_attribut_detail'
-        )
-
-admin.site.register(TypeAttribut, TypeAttributAdmin)
-
-
-
-#points de fonctions
+# points de fonctions
 class LanguageDeProgrammationAdmin(admin.ModelAdmin):
+
     list_display = (
         'id',
         'language_de_programmation',
-        'ligne_de_code_par_points_de_fonctions',
+        'ligne_de_code',
         )
 
     list_display_links = ('id',)
 
     list_editable = (
         'language_de_programmation',
-        'ligne_de_code_par_points_de_fonctions',
+        'ligne_de_code',
         )
 
 admin.site.register(LanguageDeProgrammation, LanguageDeProgrammationAdmin)
@@ -90,5 +74,5 @@ class CalculPointDeFonctionAdmin(admin.ModelAdmin):
 
 admin.site.register(CalculPointDeFonction, CalculPointDeFonctionAdmin)
 
-#global
+# global
 admin.site.register(Projet)

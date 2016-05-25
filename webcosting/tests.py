@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from .models import *
 
+
 class ProjetTests(TestCase):
 
     taille_du_projet = TailleDuProjet(
@@ -9,7 +10,7 @@ class ProjetTests(TestCase):
         )
 
     language_de_programmation = LanguageDeProgrammation(
-        language_de_programmation ="java"
+        language_de_programmation="java"
         )
 
     projet = Projet(
@@ -23,4 +24,3 @@ class ProjetTests(TestCase):
 
     def test_point_de_fonction_brut(self):
         pass
-

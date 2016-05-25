@@ -17,13 +17,11 @@
 
 {% block content %}
 
-
 <div class="jumbotron">
   <h1>Webcosting</h1>
   <p>Webcosting est un outil d'estimation de la charge de travail pour des projets informatiques</p>
   <p><a class="btn btn-primary btn-lg" href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></p>
 </div>
-
 
 <div class="row">
 
@@ -33,7 +31,7 @@
     <div class="thumbnail">
       <div class="caption">
 
-        <h3>{{ projet.nom_projet }}</h3>
+        <h3><a href="{% url 'webcosting:projet_update' projet.id %}">{{ projet.nom_projet }}</a></h3>
 
         <p><a href="{% url 'webcosting:cocomo_update' projet.id %}" class="btn btn-primary" role="button">Estimation Cocomo</a></p>
 

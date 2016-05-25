@@ -8,29 +8,29 @@ urlpatterns = [
 
     # ex: /webcosting/
     url(
-        r'^$', 
-        views.IndexView.as_view(), 
+        r'^$',
+        views.IndexView.as_view(),
         name='index'
         ),
 
     # ex: /webcosting/default
     url(
-        r'^projet/default/$', 
-        views.NoProjetDefault.as_view(), 
+        r'^projet/default/$',
+        views.NoProjetDefault.as_view(),
         name='default'
         ),
 
 
     # webcosting/projet/add
     url(
-        r'^projet/add/$', 
+        r'^projet/add/$',
         views.ProjetCreate.as_view(),
         name='projet_add'
         ),
 
     # webcosting/projet/2/update
     url(
-        r'^projet/(?P<pk>[0-9]+)/update/$', 
+        r'^projet/(?P<pk>[0-9]+)/update/$',
         views.ProjetUpdate.as_view(),
         name='projet_update'
         ),
@@ -44,7 +44,7 @@ urlpatterns = [
 
     # webcosting/projet/2/
     url(
-        r'^projet/(?P<pk>[0-9]+)/$', 
+        r'^projet/(?P<pk>[0-9]+)/$',
         views.ProjetView.as_view(),
         name='projet'
         ),
@@ -54,7 +54,7 @@ urlpatterns = [
 
     # webcosting/projet/2/cocomo/update
     url(
-        r'^projet/(?P<pk>[0-9]+)/cocomo/update/$', 
+        r'^projet/(?P<pk>[0-9]+)/cocomo/update/$',
         views.CocomoUpdate.as_view(),
         name='cocomo_update'
         ),
@@ -64,21 +64,21 @@ urlpatterns = [
 
     # ex: /webcosting/projet/2/fonction
     url(
-        r'^projet/(?P<projet_id>[0-9]+)/fonction/$', 
-        views.FonctionView.as_view(), 
+        r'^projet/(?P<projet_id>[0-9]+)/fonction/$',
+        views.FonctionView.as_view(),
         name='fonction'
         ),
 
     # webcosting/projet/2/fonction/add
     url(
-        r'^projet/(?P<projet_id>[0-9]+)/fonction/add/$', 
+        r'^projet/(?P<projet_id>[0-9]+)/fonction/add/$',
         views.FonctionCreate.as_view(),
         name='fonction_add'
         ),
 
     # webcosting/projet/2/fonction/2/update
     url(
-        r'^projet/(?P<projet_id>[0-9]+)/fonction/(?P<pk>[0-9]+)/update/$', 
+        r'^projet/(?P<projet_id>[0-9]+)/fonction/(?P<pk>[0-9]+)/update/$',
         views.FonctionUpdate.as_view(),
         name='fonction_update'
         ),
@@ -89,6 +89,5 @@ urlpatterns = [
         views.FonctionDelete.as_view(),
         name='fonction_delete'
         ),
-
 
     ]

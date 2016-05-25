@@ -19,6 +19,22 @@
 
 {% block content %}
 
+<script>
+
+function changeUnit() {
+
+  if (document.getElementById("hommesjours").innerHTML === "{{ projet.charge_de_travail_point_de_fonction }} hommes/jours") {
+
+    document.getElementById("hommesjours").innerHTML = "{{ projet.charge_de_travail_point_de_fonction_mois }} hommes/mois";
+  }
+  
+  else {
+    document.getElementById("hommesjours").innerHTML = "{{ projet.charge_de_travail_point_de_fonction }} hommes/jours";
+  }
+}
+
+</script>
+
 <shell>
 
   <h1>Projet {{ projet.nom_projet }} </h1>
@@ -38,12 +54,13 @@
 
     <div class="panel panel-info">
       <div class="panel-heading">Milliers de lignes de code</div>
-      <div class="panel-body">{{ projet.ligne_de_code }}</div>
+      <div class="panel-body">{{ projet.kilo_ligne_de_code }}</div>
     </div> 
 
     <div class="panel panel-info">
       <div class="panel-heading">Charge de travail selon la méthode des points de fonctions</div>
-      <div class="panel-body">{{ projet.charge_de_travail_point_de_fonction }} hommes/jours</div>
+      <div class="panel-body" id="hommesjours">{{ projet.charge_de_travail_point_de_fonction }} hommes/jours</div>
+      <button class="btn btn-default" onclick="changeUnit()">Changer l'unité</button>
     </div>   
 
   <h2> Méthode Cocomo </h2>
@@ -64,5 +81,7 @@
     </div>  
 
 </shell>
+
+
 
 {% endblock %}
