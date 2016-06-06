@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse_lazy
 class IndexView(generic.ListView):
     template_name = 'webcosting/index.html'
     context_object_name = 'all_projets'
+    paginate_by = 2
 
     def get_queryset(self):
         return Projet.objects.all()
