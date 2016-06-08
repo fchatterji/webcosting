@@ -493,9 +493,11 @@ class Projet(models.Model):
 
         effort_simple = self.effort_simple
 
-        moyenne_degres_integration = self.fiab / 1.0
-
-        effort_intermediaire = moyenne_degres_integration * effort_simple
+        effort_intermediaire = effort_simple * (
+            self.fiab * self.donn * self.cplx * self.temp * 
+            self.espa * self.virt * self.csys * self.apta * self.expa * 
+            self.aptp * self.expv * self.expl * self.pmod * self.olog * self.dreq
+            ) 
 
         effort_intermediaire = round(effort_intermediaire, 2)
 
