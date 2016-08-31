@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'debug_toolbar',
+    'crispy_forms',
     'webcosting.apps.WebcostingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-    'crispy_forms',
+
 ]
 
 MIDDLEWARE_CLASSES = [
