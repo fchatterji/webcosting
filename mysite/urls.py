@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^', include('webcosting.urls', namespace='webcosting')),
 	url(r'^webcosting/', include('webcosting.urls', namespace='webcosting')),
     url(r'^admin/', admin.site.urls),
 ]
