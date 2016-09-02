@@ -21,7 +21,7 @@ class Coefficient(models.Model):
         max_length=10,
         choices=TYPE_PROJET_CHOIX,
         default='organique'
-        )
+    )
 
     TYPE_COEFFICIENT_CHOIX = (
         ('A', 'A'),
@@ -34,11 +34,11 @@ class Coefficient(models.Model):
         max_length=2,
         choices=TYPE_COEFFICIENT_CHOIX,
         default='A',
-        )
+    )
 
     valeur_coefficient = models.FloatField(
         default=None,
-        )
+    )
 
 
 class LanguageDeProgrammation(models.Model):
@@ -49,11 +49,11 @@ class LanguageDeProgrammation(models.Model):
     language_de_programmation = models.CharField(
         'language de programmation',
         max_length=100
-        )
+    )
 
     ligne_de_code = models.IntegerField(
         'ligne de code par points de fonctions',
-        )
+    )
 
 
 class TailleProjet(models.Model):
@@ -64,11 +64,11 @@ class TailleProjet(models.Model):
     taille_projet = models.CharField(
         'taille du projet',
         max_length=30,
-        )
+    )
 
     charge_de_travail = models.PositiveIntegerField(
         'charge de travail en jour homme par points de fonctions'
-        )
+    )
 
 
 class TypeFonction(models.Model):
@@ -77,18 +77,18 @@ class TypeFonction(models.Model):
         return self.type_fonction
 
     TYPE_FONCTION_CHOIX = (
-        ('GDI', 'données internes'),
-        ('GDE', 'données externes'),
-        ('ENT', 'entrées'),
-        ('SOR', 'sorties'),
-        ('INT', 'interrogation')
-        )
+        ('données internes', 'données internes'),
+        ('données externes', 'données externes'),
+        ('entrées', 'entrées'),
+        ('sorties', 'sorties'),
+        ('interrogation', 'interrogation')
+    )
 
     type_fonction = models.CharField(
         max_length=3,
         choices=TYPE_FONCTION_CHOIX,
         default='données internes'
-        )
+    )
 
 
 class CalculPointDeFonction(models.Model):
@@ -142,13 +142,13 @@ class Projet(models.Model):
         'nom du projet',
         max_length=100,
         default=None
-        )
+    )
 
     date_dernier_enregistrement = models.DateTimeField(
         'date du dernier enregistrement',
         auto_now=True,
         null=True
-        )
+    )
 
     ORGANIQUE = 'OR'
     SEMIDETACHE = 'SD'
@@ -161,30 +161,31 @@ class Projet(models.Model):
     )
 
     type_projet = models.CharField(
+        'type de projet',
         max_length=2,
         choices=TYPE_PROJET_CHOIX,
         default='organique'
-        )
+    )
 
     taille_projet = models.ForeignKey(
         TailleProjet,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        )
+    )
 
     language_de_programmation = models.ForeignKey(
         LanguageDeProgrammation,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        )
+    )
 
     facteur_ajustement = models.IntegerField(
         default=1,
         blank=True,
         null=True,
-        )
+    )
 
     FIAB_CHOIX = (
         (0.75, 'très bas: 0.75'),
@@ -192,28 +193,30 @@ class Projet(models.Model):
         (1.00, 'moyen: 1.00'),
         (1.15, 'élevé: 1.15'),
         (1.40, 'très élevé: 1.40'),
-        )
+    )
 
     fiab = models.FloatField(
+        'fiabilité requise du logiciel',
         choices=FIAB_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     DONN_CHOIX = (
         (0.94, 'bas (0.94)'),
         (1.00, 'moyen (1.00)'),
         (1.08, 'élevé (1.08)'),
         (1.16, 'très élevé (1.16)'),
-        )
+    )
 
     donn = models.FloatField(
+        'taille de la base de données',
         choices=DONN_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     CPLX_CHOIX = (
         (0.70, 'très bas: 0.70'),
@@ -222,70 +225,75 @@ class Projet(models.Model):
         (1.15, 'élevé: 1.15'),
         (1.30, 'très élevé: 1.30'),
         (1.65, 'très très élevé: 1.65'),
-        )
+    )
 
     cplx = models.FloatField(
+        'complexité du produit',
         choices=CPLX_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     TEMP_CHOIX = (
         (1.00, 'moyen: 1.00'),
         (1.11, 'élevé: 1.11'),
         (1.30, 'très élevé: 1.30'),
         (1.66, 'très très élevé: 1.66'),
-        )
+    )
 
     temp = models.FloatField(
+        'contrainte sur le temps d\'exécution',
         choices=TEMP_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     ESPA_CHOIX = (
         (1.00, 'moyen: 1.00'),
         (1.06, 'élevé: 1.06'),
         (1.21, 'très élevé: 1.21'),
         (1.56, 'très très élevé: 1.56'),
-        )
+    )
 
     espa = models.FloatField(
+        'contrainte sur l\'espace de stockage',
         choices=ESPA_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     VIRT_CHOIX = (
         (0.87, 'bas: 0.87'),
         (1.00, 'moyen: 1.00'),
         (1.15, 'élevé: 1.15'),
         (1.30, 'très élevé: 1.30'),
-        )
+    )
 
     virt = models.FloatField(
+        'volatilité de la machine virtuelle',
         choices=VIRT_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     CSYS_CHOIX = (
         (0.87, 'bas: 0.87'),
         (1.00, 'moyen: 1.00'),
         (1.07, 'élevé: 1.07'),
         (1.15, 'très élevé: 1.15'),
-        )
+    )
 
     csys = models.FloatField(
+        'contrainte du système de développement',
         choices=CSYS_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     APTA_CHOIX = (
         (1.46, 'très bas: 1.46'),
@@ -293,14 +301,15 @@ class Projet(models.Model):
         (1.00, 'moyen: 1.00'),
         (0.86, 'élevé: 0.86'),
         (0.71, 'très élevé: 0.71'),
-        )
+    )
 
     apta = models.FloatField(
+        'aptitude à l\'analyse',
         choices=APTA_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     EXPA_CHOIX = (
         (1.29, 'très bas: 1.29'),
@@ -308,14 +317,15 @@ class Projet(models.Model):
         (1.00, 'moyen: 1.00'),
         (0.91, 'élevé: 0.91'),
         (0.82, 'très élevé: 0.82'),
-        )
+    )
 
     expa = models.FloatField(
+        'expérience dans le domaine de l\'application',
         choices=EXPA_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     APTP_CHOIX = (
         (1.42, 'très bas: 1.42'),
@@ -323,42 +333,45 @@ class Projet(models.Model):
         (1.00, 'moyen: 1.00'),
         (0.86, 'élevé: 0.86'),
         (0.70, 'très élevé: 0.70'),
-        )
+    )
 
     aptp = models.FloatField(
+        'aptitude à la programmation',
         choices=APTP_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     EXPV_CHOIX = (
         (1.21, 'très bas: 1.21'),
         (1.10, 'bas: 1.10'),
         (1.00, 'moyen: 1.00'),
         (0.95, 'élevé: 0.95'),
-        )
+    )
 
     expv = models.FloatField(
+        'expérience de la machine virtuelle',
         choices=EXPV_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     EXPL_CHOIX = (
         (1.14, 'très bas: 1.14'),
         (1.07, 'bas: 1.07'),
         (1.00, 'moyen: 1.00'),
         (0.95, 'élevé: 0.95'),
-        )
+    )
 
     expl = models.FloatField(
+        'expérience dans le language de programmation',
         choices=EXPL_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     PMOD_CHOIX = (
         (1.24, 'très bas: 1.24'),
@@ -366,14 +379,15 @@ class Projet(models.Model):
         (1.00, 'moyen: 1.00'),
         (0.91, 'élevé: 0.91'),
         (0.82, 'très élevé: 0.82'),
-        )
+    )
 
     pmod = models.FloatField(
+        'méthode de programmation moderne',
         choices=PMOD_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     OLOG_CHOIX = (
         (1.24, 'très bas: 1.24'),
@@ -381,14 +395,15 @@ class Projet(models.Model):
         (1.00, 'moyen: 1.00'),
         (0.91, 'élevé: 0.91'),
         (0.83, 'très élevé: 0.83'),
-        )
+    )
 
     olog = models.FloatField(
+        'disponibilité d\'outils logiciels',
         choices=OLOG_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     DREQ_CHOIX = (
         (1.23, 'très bas: 1.23'),
@@ -396,14 +411,15 @@ class Projet(models.Model):
         (1.00, 'moyen: 1.00'),
         (1.04, 'élevé: 1.04'),
         (1.10, 'très élevé: 1.10'),
-        )
+    )
 
     dreq = models.FloatField(
+        'écart avec le modèle Cocomo simple',
         choices=DREQ_CHOIX,
         default=1.00,
         blank=True,
         null=True,
-        )
+    )
 
     def get_absolute_url(self):
         return reverse('webcosting:projet', kwargs={'pk': self.pk})
@@ -589,4 +605,3 @@ class Fonction(models.Model):
         return self.projet.facteur_ajustement * self.point_de_fonction_brut
 
     point_de_fonction_net = property(_point_de_fonction_net)
-    
