@@ -7,6 +7,11 @@ from django.core.urlresolvers import reverse
 
 
 class Coefficient(models.Model):
+    """Représente les coefficients utilisés dans la méthode COCOMO
+
+    La valeur du coefficient dépend du type de projet. Il y a 4 coefficients
+    différents.
+    """
 
     def __unicode__(self):
         return self.type_projet + '-' + self.type_coefficient
@@ -42,6 +47,14 @@ class Coefficient(models.Model):
 
 
 class LanguageDeProgrammation(models.Model):
+    """Classe représentant un language de programmation.
+
+    A chaque language est associé une estimation du nombre de lignes de code
+    nécessaires par points de fonctions. Ceci est utilisé dans la méthode
+    des points de fonctions.
+
+    TODO: mettre à jour les références
+    """
 
     def __unicode__(self):
         return self.language_de_programmation
@@ -57,6 +70,11 @@ class LanguageDeProgrammation(models.Model):
 
 
 class TailleProjet(models.Model):
+    """Représente la taille d'un projet.
+
+    Selon la taille du projet, l'estimation de la charge de travail par points
+    de fonctions (dans la méthode des points de fonctions) est différente.
+    """
 
     def __unicode__(self):
         return str(self.taille_projet)
@@ -72,8 +90,13 @@ class TailleProjet(models.Model):
 
 
 class TypeFonction(models.Model):
+    """Représente un type de fonction.
 
-    def __str__(self):
+    Dans la méthode des points de fonctions, chaque fonction peut être de 5
+    types différents.
+    """
+
+    def __unicode__(self):
         return self.type_fonction
 
     TYPE_FONCTION_CHOIX = (
@@ -92,48 +115,56 @@ class TypeFonction(models.Model):
 
 
 class CalculPointDeFonction(models.Model):
+    """Référence servant à calculer le nombre de points de fonctions.
+
+    Le nombre de points de fonctions dépend du type de fonction, du
+    nombre de sous-fonctions et du nombre de données élémentaires.
+
+    TODO: la complexité ne semble pas être utilisée, à vérifier.
+    """
 
     type_fonction = models.ForeignKey(
         TypeFonction,
         on_delete=models.CASCADE,
         default=None
-        )
+    )
 
     nombre_sous_fonction_deb = models.PositiveIntegerField(
         default=0
-        )
+    )
 
     nombre_sous_fonction_fin = models.PositiveIntegerField(
         default=0
-        )
+    )
 
     nombre_donnees_elementaires_deb = models.PositiveIntegerField(
         default=0
-        )
+    )
 
     nombre_donnees_elementaires_fin = models.PositiveIntegerField(
         default=0
-        )
+    )
 
     COMPLEXITE_CHOIX = (
         ('faible', 'faible'),
         ('moyen', 'moyen'),
         ('élevé', 'élevé')
-        )
+    )
 
     complexite = models.CharField(
         max_length=10,
         choices=COMPLEXITE_CHOIX,
         default='moyen'
-        )
+    )
 
     nombre_point_de_fonction = models.PositiveIntegerField(
         'nombre de points de fonctions',
         default=0
-        )
+    )
 
 
 class Projet(models.Model):
+    """Représente un projet."""
 
     def __unicode__(self):
         return self.nom_projet
@@ -422,11 +453,19 @@ class Projet(models.Model):
     )
 
     def get_absolute_url(self):
+        """Retourne l'url de l'objet.
+
+        Permet, dans les templates, de construire des liens de type:
+        <a href="{{ object.get_absolute_url }}">{{ object.name }}</a>
+
+        Cela évite de hardcoder des urls et rend les modifications
+        ultérieures d'urls plus simples.
+        """
         return reverse('webcosting:projet', kwargs={'pk': self.pk})
 
 
     def _point_de_fonction_brut(self):
-
+        """Calcule le nombre total de points de fonctions bruts du projet."""
         fonctions = Fonction.objects.filter(projet=self.id)
 
         point_de_fonction_brut = 0
@@ -435,17 +474,22 @@ class Projet(models.Model):
 
         return point_de_fonction_brut
 
+    """L'utilisation des 'property' permet d'inclure des champs calculés dans
+    le modèle. Cf cette réponse:
+    http://stackoverflow.com/questions/11465293/create-a-field-which-value-is-a-calculation-of-other-fields-values
+    """
     point_de_fonction_brut = property(_point_de_fonction_brut)
 
 
     def _point_de_fonction_net(self):
-
+        """Calcule le nombre total de points de fonctions nets du projet."""
         return self.facteur_ajustement * self.point_de_fonction_brut
 
     point_de_fonction_net = property(_point_de_fonction_net)
 
 
     def _charge_de_travail_point_de_fonction(self):
+        """Calcule la charge de travail par point de fonction (en jours)."""
 
         taille_projet = TailleProjet.objects.get(taille_projet=self.taille_projet)
 
@@ -457,6 +501,7 @@ class Projet(models.Model):
 
 
     def _charge_de_travail_point_de_fonction_mois(self):
+        """Calcule la charge de travail par point de fonction (en mois)."""
 
         return self.charge_de_travail_point_de_fonction / 30.0
 
@@ -464,7 +509,10 @@ class Projet(models.Model):
 
 
     def _kilo_ligne_de_code(self):
+        """Calcule le nombre de lignes de code d'un projet.
 
+        L'unité utilisée est le kilo ligne de code, soit 1000 lignes de code.
+        """
         language_de_programmation = LanguageDeProgrammation.objects.get(language_de_programmation=self.language_de_programmation)
 
         ligne_de_code = language_de_programmation.ligne_de_code
@@ -479,25 +527,28 @@ class Projet(models.Model):
 
 
     def _effort_simple(self):
+        """Calcule l'effort simple selon la méthode Cocomo.
 
+        L'effort simple est une première estimation rapide de la charge de
+        travail liée à un projet.
+        """
         A = Coefficient.objects.get(
             type_coefficient='A',
             type_projet=self.type_projet,
-            )
+        )
+
+        A = A.valeur_coefficient
 
         B = Coefficient.objects.get(
             type_coefficient='B',
             type_projet=self.type_projet,
-            )
-
-        A = A.valeur_coefficient
+        )
 
         B = B.valeur_coefficient
 
         ligne_de_code = self.kilo_ligne_de_code
 
         effort_simple = A * (ligne_de_code ** B)
-
         effort_simple = round(effort_simple, 2)
 
         return effort_simple
@@ -505,43 +556,51 @@ class Projet(models.Model):
     effort_simple = property(_effort_simple)
 
 
-    def _charge_de_travail_cocomo(self):
+    def _effort_intermediaire(self):
+        """Calcule l'effort intermédiaire selon la méthode Cocomo.
 
+        L'effort intermédiaire est une estimation plus complexe de la charge
+        de travail liée à un projet, basée sur le calcul de l'effort simple.
+        """
         effort_simple = self.effort_simple
 
         effort_intermediaire = effort_simple * (
-            self.fiab * self.donn * self.cplx * self.temp * 
-            self.espa * self.virt * self.csys * self.apta * self.expa * 
+            self.fiab * self.donn * self.cplx * self.temp *
+            self.espa * self.virt * self.csys * self.apta * self.expa *
             self.aptp * self.expv * self.expl * self.pmod * self.olog * self.dreq
-            ) 
+        )
 
         effort_intermediaire = round(effort_intermediaire, 2)
 
         return effort_intermediaire
 
-    charge_de_travail_cocomo = property(_charge_de_travail_cocomo)
+    effort_intermediaire = property(_effort_intermediaire)
 
 
     def _temps_de_developpement(self):
+        """Calcule le temps de développement (en mois) d'un projet.
 
+        Le temps de développement est basé sur le calcul de l'effort
+        intermédiaire et sur deux coefficients, C et D, qui dépendent
+        de la taille du projet.
+        """
         C = Coefficient.objects.get(
             type_coefficient='C',
             type_projet=self.type_projet
-            )
+        )
 
         D = Coefficient.objects.get(
             type_coefficient='D',
             type_projet=self.type_projet
-            )
+        )
 
         C = C.valeur_coefficient
 
         D = D.valeur_coefficient
 
-        effort_simple = self.effort_simple
+        effort_intermediaire = self.effort_intermediaire
 
-        temps_de_developpement = C * (effort_simple ** D)
-
+        temps_de_developpement = C * (effort_intermediaire ** D)
         temps_de_developpement = round(temps_de_developpement, 2)
 
         return temps_de_developpement
@@ -550,6 +609,7 @@ class Projet(models.Model):
 
 
 class Fonction(models.Model):
+    """Représente une fonction, dans la méthode des points de fonctions."""
 
     def __unicode__(self):
         return self.nom_fonction
@@ -558,50 +618,58 @@ class Fonction(models.Model):
         Projet,
         on_delete=models.CASCADE,
         default=None
-        )
+    )
 
     nom_fonction = models.CharField(
         'nom de la fonction',
         max_length=100,
         default=None
-        )
+    )
 
     type_fonction = models.ForeignKey(
         TypeFonction,
         on_delete=models.CASCADE,
         default=None
-        )
+    )
 
     nombre_sous_fonction = models.PositiveIntegerField(
         'nombre de sous-fonctions (\'GDR ou SLD\')',
         default=0,
-        )
+    )
 
     nombre_donnees_elementaires = models.PositiveIntegerField(
         'nombre de données élémentaires',
         default=0,
-        )
+    )
 
     def get_absolute_url(self):
+        """Retourne l'url de l'objet.
+
+        Permet, dans les templates, de construire des liens de type:
+        <a href="{{ object.get_absolute_url }}">{{ object.name }}</a>
+
+        Cela évite de hardcoder des urls et rend les modifications
+        ultérieures d'urls plus simples.
+        """
         return reverse('webcosting:fonction', kwargs={'projet_id': self.projet.id})
 
 
     def _point_de_fonction_brut(self):
-
+        """Calcule le nombre de points de fonction bruts d'une fonction."""
         calcul_point_de_fonction = CalculPointDeFonction.objects.get(
             type_fonction=self.type_fonction,
             nombre_sous_fonction_deb__lte=self.nombre_sous_fonction,
             nombre_sous_fonction_fin__gte=self.nombre_sous_fonction,
             nombre_donnees_elementaires_deb__lte=self.nombre_donnees_elementaires,
-            nombre_donnees_elementaires_fin__gte=self.nombre_donnees_elementaires 
-            )
+            nombre_donnees_elementaires_fin__gte=self.nombre_donnees_elementaires
+        )
         return calcul_point_de_fonction.nombre_point_de_fonction
 
     point_de_fonction_brut = property(_point_de_fonction_brut)
 
 
     def _point_de_fonction_net(self):
-
+        """Calcule le nombre de points de fonction nets d'une fonction."""
         return self.projet.facteur_ajustement * self.point_de_fonction_brut
 
     point_de_fonction_net = property(_point_de_fonction_net)
