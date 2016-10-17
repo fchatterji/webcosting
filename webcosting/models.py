@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 
+from validators import validate_lower_than_100
 
 class Coefficient(models.Model):
     """Représente les coefficients utilisés dans la méthode COCOMO
@@ -640,6 +641,8 @@ class Fonction(models.Model):
     nombre_donnees_elementaires = models.PositiveIntegerField(
         'nombre de données élémentaires',
         default=0,
+        validators=[validate_lower_than_100],
+
     )
 
     def get_absolute_url(self):
