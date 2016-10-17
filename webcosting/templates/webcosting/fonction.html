@@ -1,143 +1,86 @@
+ {% extends "webcosting/base.html" %} 
 
-{% extends "webcosting/base.html" %}
 
-
-{% block navigation %}
-
+ {% block navigation %}
 <ul class="nav nav-pills">
-  <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
-  <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
-  <li role="presentation"><a href="{% url 'webcosting:cocomo_update' projet.id %}">Estimation Cocomo</a></li>
-  <li role="presentation" class="active"><a href="{% url 'webcosting:fonction' projet.id %}" role="button">Estimation points de fonctions</a></li>
-  <li role="presentation"><a href="{% url 'webcosting:projet' projet.id %}">Synthèse du projet</a></li>
-
+    <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
+    <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
+    <li role="presentation"><a href="{% url 'webcosting:cocomo_update' projet.id %}">Estimation Cocomo</a></li>
+    <li role="presentation" class="active"><a href="{% url 'webcosting:fonction' projet.id %}" role="button">Estimation points de fonctions</a></li>
+    <li role="presentation"><a href="{% url 'webcosting:projet' projet.id %}">Synthèse du projet</a></li>
 </ul>
-
-{% endblock %}
+{% endblock %} 
 
 
 {% block content %}
-
 <h1>Projet {{ projet.nom_projet }} </h1>
-
 <p>Vous trouverez une notice explicative en bas de la page</p>
-
 <p><a href="{% url 'webcosting:fonction_add' projet.id %}" class="btn btn-primary" role="button">Ajouter une fonction</a></p>
-
 <div class="row">
-
-  {% for fonction in all_fonctions %}
-
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-
-        <h3>{{ fonction.nom_fonction }}</h3>
-
-        <p>type de fonction: {{ fonction.type_fonction}} </p>
-        <p>nombre de sous-fonctions (GDR ou SLD): {{ fonction.nombre_sous_fonction}} </p>
-        <p>nombre de données élémentaires {{ fonction.nombre_donnees_elementaires }} </p>
-        <p>nombre de points de fonctions bruts: {{ fonction.point_de_fonction_brut }} </p>
-        <p>nombre de points de fonctions nets: {{ fonction.point_de_fonction_net }} </p>
-        <p>
-          <a href="{% url 'webcosting:fonction_update' projet.id fonction.id %}" class="btn btn-default" role="button">Modifier</a> 
-
-          <form action="{% url 'webcosting:fonction_delete' projet.id fonction.id %}" method="post">
-
-            {% csrf_token %}
-
-            <input type="hidden" name="projet_id" value="{{ projet.id }}">
-            <input type="hidden" name="fonction_id" value="{{ fonction.id }}">
-            <button type="submit" class="btn btn-default">Supprimer</button>
-            
-          </form>
-
-        </p>
-
-      </div>
+    {% for fonction in all_fonctions %}
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h3>{{ fonction.nom_fonction }}</h3>
+                <p>type de fonction: {{ fonction.type_fonction}} </p>
+                <p>nombre de sous-fonctions (GDR ou SLD): {{ fonction.nombre_sous_fonction}} </p>
+                <p>nombre de données élémentaires {{ fonction.nombre_donnees_elementaires }} </p>
+                <p>nombre de points de fonctions bruts: {{ fonction.point_de_fonction_brut }} </p>
+                <p>nombre de points de fonctions nets: {{ fonction.point_de_fonction_net }} </p>
+                <p>
+                    <a href="{% url 'webcosting:fonction_update' projet.id fonction.id %}" class="btn btn-default" role="button">Modifier</a>
+                    <form action="{% url 'webcosting:fonction_delete' projet.id fonction.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="projet_id" value="{{ projet.id }}">
+                        <input type="hidden" name="fonction_id" value="{{ fonction.id }}">
+                        <button type="submit" class="btn btn-default">Supprimer</button>
+                    </form>
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
-
-  {% endfor %}
-
+    {% endfor %}
 </div>
-
-
-
-
 <h2>Types de fonctions</h2>
-
 <ul>
-  <li>
-Les données internes (GDI):
-Cette entité fait référence à l’aspect statique du système d’information.
-C’est un groupe de données logiquement liées, ou de groupe de paramètres de contrôle, identifiable
-par l’utilisateur. Ces données sont mises à jour et utilisés à l’intérieur de la frontière de l’application.
-  </li><br>
-
-  <li>
-Les données externes (GDE):
-Le GDE est relatif à l’aspect statique du système d’information.
-C’est un groupe de données logiquement liées, ou groupe de paramètre de contrôle, et identifiables
-par l’utilisateur. Ces données sont utilisées par l’application, mais mises jour par une autre
-application, via un fichier ou autre. Le GDE est un GDI dans un autre domaine.
-  </li><br>
-
-  <li>
-Les Entrées (ENT):
-Les entrées sont relatives à l’aspect dynamique du système d’information.
-Ce sont les données, ou les paramètres de contrôle, qui entrent dans l’application considérée. Ces
-entrées maintiennent un ou plusieurs GDI, initialisent ou contrôlent un traitement, et font l’objet
-d’un traitement unique. Une entrée correspond donc à un écran de saisie, ou à une réception de
-données. Il est à noter qu’à chaque GDI doit correspondre au moins une entrée, permettant sa mise
-à jour.
-  </li><br>
-
-  <li>
-Les sorties (SOR):
-Les sorties sont relatives à l’aspect dynamique du système d’information.
-Ce sont les données, ou les paramètres de contrôle qui sortent de l’application. Ces sorties sont le
-résultat d’un traitement unique. Ce traitement unique doit être différent d’une simple extraction de
-données et il doit au mieux réaliser une opération de mise en forme. Ce peut-être un écran de
-visualisation, un message vers une autre application ou la création d’un fichier d’exportation
-formaté.
-  </li><br>
-
-  <li>
-Interrogation (INT):
-Les interrogations sont relatives à l’aspect dynamique du système d’information.
-Ce sont des données élémentaires qui correspondent à une extraction de données. L’INT ne met à
-jour aucun GDI.
-  </li><br>
-
+    <li>
+        Les données internes (GDI): Cette entité fait référence à l’aspect statique du système d’information. C’est un groupe de données logiquement liées, ou de groupe de paramètres de contrôle, identifiable par l’utilisateur. Ces données sont mises à jour et utilisés à l’intérieur de la frontière de l’application.
+    </li>
+    <br>
+    <li>
+        Les données externes (GDE): Le GDE est relatif à l’aspect statique du système d’information. C’est un groupe de données logiquement liées, ou groupe de paramètre de contrôle, et identifiables par l’utilisateur. Ces données sont utilisées par l’application, mais mises jour par une autre application, via un fichier ou autre. Le GDE est un GDI dans un autre domaine.
+    </li>
+    <br>
+    <li>
+        Les Entrées (ENT): Les entrées sont relatives à l’aspect dynamique du système d’information. Ce sont les données, ou les paramètres de contrôle, qui entrent dans l’application considérée. Ces entrées maintiennent un ou plusieurs GDI, initialisent ou contrôlent un traitement, et font l’objet d’un traitement unique. Une entrée correspond donc à un écran de saisie, ou à une réception de données. Il est à noter qu’à chaque GDI doit correspondre au moins une entrée, permettant sa mise à jour.
+    </li>
+    <br>
+    <li>
+        Les sorties (SOR): Les sorties sont relatives à l’aspect dynamique du système d’information. Ce sont les données, ou les paramètres de contrôle qui sortent de l’application. Ces sorties sont le résultat d’un traitement unique. Ce traitement unique doit être différent d’une simple extraction de données et il doit au mieux réaliser une opération de mise en forme. Ce peut-être un écran de visualisation, un message vers une autre application ou la création d’un fichier d’exportation formaté.
+    </li>
+    <br>
+    <li>
+        Interrogation (INT): Les interrogations sont relatives à l’aspect dynamique du système d’information. Ce sont des données élémentaires qui correspondent à une extraction de données. L’INT ne met à jour aucun GDI.
+    </li>
+    <br>
 </ul>
-
 <h2>Paramètres complémentaires</h2>
-
 <p>
-Pour évaluer le niveau de complexité, il est défini trois paramètres complémentaires aux entités
-définies supra.
-Ces paramètres sont :
+    Pour évaluer le niveau de complexité, il est défini trois paramètres complémentaires aux entités définies supra. Ces paramètres sont :
 </p>
-
 <ul>
-  <li>
-les données élémentaires (DE) : Chaque GDI et GDE est composé de données élémentaires.
-Une DE équivaut à un champ de données. On compte un seul DE par champ répétitif dans les
-entrées, les sorties, et les interrogations.
-  </li><br>
-
-  <li>
-Les sous-ensembles logiques de données (SLD) : D’un point de vue fonctionnel, ce sont les
-groupements logiques de GDI ou de GDE qui sont traitées simultanément dans l’application.
-  </li><br>
-
-  <li>
-Les groupes de données référencées (GDR) : D’un point de vue fonctionnel, ce sont les
-groupements logiques de GDI ou de GDE qui sont mis à jour, ou consultés simultanément par
-les différents ENT, SOR ou INT. Pour simplifier, il peut être considéré qu’un GDR est une
-référence à un GDI et GDE
-  </li><br>
+    <li>
+        les données élémentaires (DE) : Chaque GDI et GDE est composé de données élémentaires. Une DE équivaut à un champ de données. On compte un seul DE par champ répétitif dans les entrées, les sorties, et les interrogations.
+    </li>
+    <br>
+    <li>
+        Les sous-ensembles logiques de données (SLD) : D’un point de vue fonctionnel, ce sont les groupements logiques de GDI ou de GDE qui sont traitées simultanément dans l’application.
+    </li>
+    <br>
+    <li>
+        Les groupes de données référencées (GDR) : D’un point de vue fonctionnel, ce sont les groupements logiques de GDI ou de GDE qui sont mis à jour, ou consultés simultanément par les différents ENT, SOR ou INT. Pour simplifier, il peut être considéré qu’un GDR est une référence à un GDI et GDE
+    </li>
+    <br>
 </ul>
-
 {% endblock %}
+

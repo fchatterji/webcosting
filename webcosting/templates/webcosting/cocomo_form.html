@@ -1,145 +1,107 @@
+ {% extends "webcosting/base.html" %} 
 
-{% extends "webcosting/base.html" %}
 
-{% block navigation %}
-
+ {% block navigation %}
 <ul class="nav nav-pills">
-  <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
-  <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
-  <li role="presentation" class="active"><a href="{% url 'webcosting:cocomo_update' projet.id %}">Estimation Cocomo</a></li>
-  <li role="presentation" ><a href="{% url 'webcosting:fonction' projet.id %}" role="button">Estimation points de fonctions</a></li>
-  <li role="presentation"><a href="{% url 'webcosting:projet' projet.id %}">Synthèse du projet</a></li>
+    <li role="presentation"><a href="{% url 'webcosting:index' %}">Accueil</a></li>
+    <li role="presentation"><a href="{% url 'webcosting:projet_add' %}" role="button">Ajouter un projet</a></li>
+    <li role="presentation" class="active"><a href="{% url 'webcosting:cocomo_update' projet.id %}">Estimation Cocomo</a></li>
+    <li role="presentation"><a href="{% url 'webcosting:fonction' projet.id %}" role="button">Estimation points de fonctions</a></li>
+    <li role="presentation"><a href="{% url 'webcosting:projet' projet.id %}">Synthèse du projet</a></li>
 </ul>
-
-{% endblock %}
+{% endblock %} 
 
 
 {% block content %}
-
 <h1>Projet {{ projet.nom_projet }} </h1>
-
 <p>Vous trouverez une notice explicative en bas de la page</p>
-
 <form class="form-horizontal" action="" method="post">
-
-    {% csrf_token %}
+    {% csrf_token %} 
     {% include 'webcosting/form-template.html' %}
-
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success">Sauvegarder</button>
         </div>
     </div>
-
 </form>
-
 <h2>Choix du type de projet</h2>
 <ul>
-  <li>
-Les projets dits « organiques » : ce sont des projets réalisés par une équipe de taille
-relativement petite travaillant dans un environnement familié et dans un domaine
-d’application connu de l’équipe. En conséquence, le coût inhérent à la communication est
-faibles, les membres de l’équipe savent ce qu’ils ont à faire et le font rapidement.
-  </li>
-  <br>
-
-  <li>
-Les projets dit « embarqués » : ce sont des projets dans lesquels le produit fonctionne sous
-des contraintes particulièrement fortes. Il est une partie d’un système complexe et
-fortement connecté à du matériel et du logiciel, des normes et des procédures
-opérationnelles. Ils se caractérisent aussi par des coûts de validation extrêmement élevés et
-les modifications de spécification destinées à contourner des problèmes logiciels sont en
-générale impossible.
-  </li>
-  <br>
-
-  <li>
-Les projets « semi-détachés » : ce sont des projets intermédiaires entre le modèle organique
-et embarqué. Ils se caractérisent par des membres de l’équipe qui ont une expérience limitée
-de ce type de système. Ils peuvent être totalement inexpérimentés en ce qui concerne
-quelques aspects du système à développer mais pas tous.
-  </li>
+    <li>
+        Les projets dits « organiques » : ce sont des projets réalisés par une équipe de taille relativement petite travaillant dans un environnement familié et dans un domaine d’application connu de l’équipe. En conséquence, le coût inhérent à la communication est faibles, les membres de l’équipe savent ce qu’ils ont à faire et le font rapidement.
+    </li>
+    <br>
+    <li>
+        Les projets dit « embarqués » : ce sont des projets dans lesquels le produit fonctionne sous des contraintes particulièrement fortes. Il est une partie d’un système complexe et fortement connecté à du matériel et du logiciel, des normes et des procédures opérationnelles. Ils se caractérisent aussi par des coûts de validation extrêmement élevés et les modifications de spécification destinées à contourner des problèmes logiciels sont en générale impossible.
+    </li>
+    <br>
+    <li>
+        Les projets « semi-détachés » : ce sont des projets intermédiaires entre le modèle organique et embarqué. Ils se caractérisent par des membres de l’équipe qui ont une expérience limitée de ce type de système. Ils peuvent être totalement inexpérimentés en ce qui concerne quelques aspects du système à développer mais pas tous.
+    </li>
 </ul>
-
 <h2>Choix des attributs</h2>
 <p>
-Ces attributs sont à évaluer sur une échelle allant de très faible à très haute soit en termes
-d’exigence ou de contrainte. Par attribut et par position dans l’échelle, il est associé une valeur qui va
-influer sur la valeur de l'estimation.
+    Ces attributs sont à évaluer sur une échelle allant de très faible à très haute soit en termes d’exigence ou de contrainte. Par attribut et par position dans l’échelle, il est associé une valeur qui va influer sur la valeur de l'estimation.
 </p>
-
-
 <ul>
-
-<li>
-FIAB – fiabilité requise du logiciel : décrit les contraintes de fiabilité pesant sur le projet ;
-</li>
-<br>
-<li>
-DONN – taille de la base de données ;
-</li>
-<br>
-<li>
-CPLX- Complexité du produit : décrit la complexité des fonctionnalités à réaliser et celles
-nécessaires pour implémenter les solutions
-</li>
-<br>
-<li>
-TEMP – contrainte sur le temps d’exécution ;
-</li>
-<br>
-<li>
-ESPA – contrainte sur l’espace de stockage (mémoire vive et dispositif physique de
-stockage) ;
-</li>
-<br>
-<li>
-VIRT – volatilité de la machine virtuel : cet attribut traduit les contraintes d’exploitation de la
-machine sur laquelle va s’exécuter l’application et notamment les contraintes nécessitant
-une intervention humaine
-</li>
-<br>
-<li>
-CSYS – contrainte du système de développement : traduit le taux intervention humain sur le
-fonctionnement de l’outil de développement et son manque d’automatisation et de
-fonctionnalité.
-</li>
-<br>
-<li>
-APTA – l’aptitude à l’analyse : traduit la capacité à étudier les exigences et à intégrer les
-contraintes. Cette attribut traduit le degré d’étude préliminaire, l’élaboration des
-spécifications architecturales et détaillés ou techniques
-</li>
-<br>
-<li>
-EXPA – l’expérience dans le domaine de l’application ;
-</li>
-<br>
-<li>
-EXPV – L’expérience de la machine virtuelle sur laquelle va être mise en production
-l’application.
-</li>
-<br>
-<li>
-EXPL – expérience dans le langage de programmation ;
-</li>
-<br>
-<li>
-APTP – aptitude à la programmation;
-</li>
-<br>
-<li>
-PMOD – méthode de programmation moderne ;
-</li>
-<br>
-<li>
-OLOG - disponibilité d’outils logiciels sur l’intégralité du cycle de vie de l’application ;
-</li>
-<br>
-<li>
-DIREQ – mesure l’écart entre la durée de développement et la durée estimée avec le modèle
-COCOMO simple.
-</li>
-
+    <li>
+        FIAB – fiabilité requise du logiciel : décrit les contraintes de fiabilité pesant sur le projet ;
+    </li>
+    <br>
+    <li>
+        DONN – taille de la base de données ;
+    </li>
+    <br>
+    <li>
+        CPLX- Complexité du produit : décrit la complexité des fonctionnalités à réaliser et celles nécessaires pour implémenter les solutions
+    </li>
+    <br>
+    <li>
+        TEMP – contrainte sur le temps d’exécution ;
+    </li>
+    <br>
+    <li>
+        ESPA – contrainte sur l’espace de stockage (mémoire vive et dispositif physique de stockage) ;
+    </li>
+    <br>
+    <li>
+        VIRT – volatilité de la machine virtuel : cet attribut traduit les contraintes d’exploitation de la machine sur laquelle va s’exécuter l’application et notamment les contraintes nécessitant une intervention humaine
+    </li>
+    <br>
+    <li>
+        CSYS – contrainte du système de développement : traduit le taux intervention humain sur le fonctionnement de l’outil de développement et son manque d’automatisation et de fonctionnalité.
+    </li>
+    <br>
+    <li>
+        APTA – l’aptitude à l’analyse : traduit la capacité à étudier les exigences et à intégrer les contraintes. Cette attribut traduit le degré d’étude préliminaire, l’élaboration des spécifications architecturales et détaillés ou techniques
+    </li>
+    <br>
+    <li>
+        EXPA – l’expérience dans le domaine de l’application ;
+    </li>
+    <br>
+    <li>
+        EXPV – L’expérience de la machine virtuelle sur laquelle va être mise en production l’application.
+    </li>
+    <br>
+    <li>
+        EXPL – expérience dans le langage de programmation ;
+    </li>
+    <br>
+    <li>
+        APTP – aptitude à la programmation;
+    </li>
+    <br>
+    <li>
+        PMOD – méthode de programmation moderne ;
+    </li>
+    <br>
+    <li>
+        OLOG - disponibilité d’outils logiciels sur l’intégralité du cycle de vie de l’application ;
+    </li>
+    <br>
+    <li>
+        DIREQ – mesure l’écart entre la durée de développement et la durée estimée avec le modèle COCOMO simple.
+    </li>
 </ul>
 {% endblock %}
+
