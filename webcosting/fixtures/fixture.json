@@ -1,0 +1,1254 @@
+[
+{
+    "model": "webcosting.coefficient",
+    "pk": 13,
+    "fields": {
+        "type_projet": "OR",
+        "type_coefficient": "A",
+        "valeur_coefficient": 3.2
+    }
+},
+{
+    "model": "webcosting.coefficient",
+    "pk": 14,
+    "fields": {
+        "type_projet": "OR",
+        "type_coefficient": "B",
+        "valeur_coefficient": 1.05
+    }
+},
+{
+    "model": "webcosting.coefficient",
+    "pk": 15,
+    "fields": {
+        "type_projet": "OR",
+        "type_coefficient": "C",
+        "valeur_coefficient": 2.5
+    }
+},
+{
+    "model": "webcosting.coefficient",
+    "pk": 16,
+    "fields": {
+        "type_projet": "OR",
+        "type_coefficient": "D",
+        "valeur_coefficient": 0.38
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 16,
+    "fields": {
+        "language_de_programmation": "Access",
+        "ligne_de_code": 38
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 17,
+    "fields": {
+        "language_de_programmation": "Ada 83",
+        "ligne_de_code": 71
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 18,
+    "fields": {
+        "language_de_programmation": "Ada 95",
+        "ligne_de_code": 49
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 19,
+    "fields": {
+        "language_de_programmation": "AI Shell",
+        "ligne_de_code": 49
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 20,
+    "fields": {
+        "language_de_programmation": "APL",
+        "ligne_de_code": 32
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 21,
+    "fields": {
+        "language_de_programmation": "Assembly - Basic",
+        "ligne_de_code": 320
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 22,
+    "fields": {
+        "language_de_programmation": "Assembly - Macro",
+        "ligne_de_code": 213
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 23,
+    "fields": {
+        "language_de_programmation": "Basic - ANSI",
+        "ligne_de_code": 64
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 24,
+    "fields": {
+        "language_de_programmation": "Basic - Compiled",
+        "ligne_de_code": 91
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 25,
+    "fields": {
+        "language_de_programmation": "Basic - Visual",
+        "ligne_de_code": 32
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 26,
+    "fields": {
+        "language_de_programmation": "C",
+        "ligne_de_code": 128
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 27,
+    "fields": {
+        "language_de_programmation": "C++",
+        "ligne_de_code": 55
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 28,
+    "fields": {
+        "language_de_programmation": "Cobol (ANSI 85)",
+        "ligne_de_code": 91
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 29,
+    "fields": {
+        "language_de_programmation": "Database - Default",
+        "ligne_de_code": 40
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 30,
+    "fields": {
+        "language_de_programmation": "Fifth Generation Language",
+        "ligne_de_code": 4
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 31,
+    "fields": {
+        "language_de_programmation": "First Generation Language",
+        "ligne_de_code": 320
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 32,
+    "fields": {
+        "language_de_programmation": "Forth",
+        "ligne_de_code": 64
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 33,
+    "fields": {
+        "language_de_programmation": "Fortran 77",
+        "ligne_de_code": 107
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 34,
+    "fields": {
+        "language_de_programmation": "Fortran 95",
+        "ligne_de_code": 71
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 35,
+    "fields": {
+        "language_de_programmation": "Fourth Generation Language",
+        "ligne_de_code": 20
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 36,
+    "fields": {
+        "language_de_programmation": "High Level Language",
+        "ligne_de_code": 64
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 37,
+    "fields": {
+        "language_de_programmation": "HTML 3.0",
+        "ligne_de_code": 15
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 38,
+    "fields": {
+        "language_de_programmation": "Java",
+        "ligne_de_code": 53
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 39,
+    "fields": {
+        "language_de_programmation": "Jovial",
+        "ligne_de_code": 107
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 40,
+    "fields": {
+        "language_de_programmation": "Lisp",
+        "ligne_de_code": 64
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 41,
+    "fields": {
+        "language_de_programmation": "Machine Code",
+        "ligne_de_code": 640
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 42,
+    "fields": {
+        "language_de_programmation": "Modula 2",
+        "ligne_de_code": 80
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 43,
+    "fields": {
+        "language_de_programmation": "Pascal",
+        "ligne_de_code": 91
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 44,
+    "fields": {
+        "language_de_programmation": "PERL",
+        "ligne_de_code": 27
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 45,
+    "fields": {
+        "language_de_programmation": "PowerBuilder",
+        "ligne_de_code": 16
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 46,
+    "fields": {
+        "language_de_programmation": "Prolog",
+        "ligne_de_code": 64
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 47,
+    "fields": {
+        "language_de_programmation": "Query - Default",
+        "ligne_de_code": 13
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 48,
+    "fields": {
+        "language_de_programmation": "Report Generator",
+        "ligne_de_code": 80
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 49,
+    "fields": {
+        "language_de_programmation": "Second Generation Language",
+        "ligne_de_code": 107
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 50,
+    "fields": {
+        "language_de_programmation": "Simulation - Default",
+        "ligne_de_code": 46
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 51,
+    "fields": {
+        "language_de_programmation": "Spreadsheet",
+        "ligne_de_code": 6
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 52,
+    "fields": {
+        "language_de_programmation": "Third Generation Language",
+        "ligne_de_code": 80
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 53,
+    "fields": {
+        "language_de_programmation": "Unix Shell Scripts",
+        "ligne_de_code": 107
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 54,
+    "fields": {
+        "language_de_programmation": "USR_1",
+        "ligne_de_code": 1
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 55,
+    "fields": {
+        "language_de_programmation": "USR_2",
+        "ligne_de_code": 1
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 56,
+    "fields": {
+        "language_de_programmation": "USR_3",
+        "ligne_de_code": 1
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 57,
+    "fields": {
+        "language_de_programmation": "USR_4",
+        "ligne_de_code": 1
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 58,
+    "fields": {
+        "language_de_programmation": "USR_5",
+        "ligne_de_code": 1
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 59,
+    "fields": {
+        "language_de_programmation": "Visual Basic 5.0",
+        "ligne_de_code": 29
+    }
+},
+{
+    "model": "webcosting.languagedeprogrammation",
+    "pk": 60,
+    "fields": {
+        "language_de_programmation": "Visual C++",
+        "ligne_de_code": 34
+    }
+},
+{
+    "model": "webcosting.tailleprojet",
+    "pk": 4,
+    "fields": {
+        "taille_projet": "petit",
+        "charge_de_travail": 2
+    }
+},
+{
+    "model": "webcosting.tailleprojet",
+    "pk": 5,
+    "fields": {
+        "taille_projet": "moyen",
+        "charge_de_travail": 3
+    }
+},
+{
+    "model": "webcosting.tailleprojet",
+    "pk": 6,
+    "fields": {
+        "taille_projet": "grand",
+        "charge_de_travail": 4
+    }
+},
+{
+    "model": "webcosting.typefonction",
+    "pk": 6,
+    "fields": {
+        "type_fonction": "GDI"
+    }
+},
+{
+    "model": "webcosting.typefonction",
+    "pk": 7,
+    "fields": {
+        "type_fonction": "GDE"
+    }
+},
+{
+    "model": "webcosting.typefonction",
+    "pk": 8,
+    "fields": {
+        "type_fonction": "ENT"
+    }
+},
+{
+    "model": "webcosting.typefonction",
+    "pk": 9,
+    "fields": {
+        "type_fonction": "SOR"
+    }
+},
+{
+    "model": "webcosting.typefonction",
+    "pk": 10,
+    "fields": {
+        "type_fonction": "INT"
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 46,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 47,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 50,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 48,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 51,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 10
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 49,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 50,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 50,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 10
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 51,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 51,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 15
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 52,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 10
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 53,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 50,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 15
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 54,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 51,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 15
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 55,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 5
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 56,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 50,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 5
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 57,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 51,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 58,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 5
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 59,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 50,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 60,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 51,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 10
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 61,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 62,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 50,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 10
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 63,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 51,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 10
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 64,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 4,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 3
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 65,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 5,
+        "nombre_donnees_elementaires_fin": 15,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 3
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 66,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 16,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 67,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 2,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 4,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 3
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 68,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 2,
+        "nombre_donnees_elementaires_deb": 5,
+        "nombre_donnees_elementaires_fin": 15,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 69,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 2,
+        "nombre_donnees_elementaires_deb": 16,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 6
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 70,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 3,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 4,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 71,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 3,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 5,
+        "nombre_donnees_elementaires_fin": 15,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 6
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 72,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 3,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 16,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 6
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 73,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 5,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 74,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 6,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 75,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 5
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 76,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 5,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 77,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 6,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 5
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 78,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 79,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 5,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 5
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 80,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 6,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 81,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 7
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 82,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 5,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 3
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 83,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 6,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 3
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 84,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 85,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 5,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 3
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 86,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 6,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 87,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 6
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 88,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 1,
+        "nombre_donnees_elementaires_fin": 5,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 4
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 89,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 6,
+        "nombre_donnees_elementaires_fin": 19,
+        "complexite": "moyen",
+        "nombre_point_de_fonction": 6
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 90,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 20,
+        "nombre_donnees_elementaires_fin": 10000,
+        "complexite": "\u00e9lev\u00e9",
+        "nombre_point_de_fonction": 6
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 91,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 92,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 93,
+    "fields": {
+        "type_fonction": 6,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 94,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 95,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 5,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 96,
+    "fields": {
+        "type_fonction": 7,
+        "nombre_sous_fonction_deb": 6,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 97,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 98,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 2,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 99,
+    "fields": {
+        "type_fonction": 8,
+        "nombre_sous_fonction_deb": 3,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 100,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 101,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 102,
+    "fields": {
+        "type_fonction": 9,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 103,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 0,
+        "nombre_sous_fonction_fin": 1,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 104,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 2,
+        "nombre_sous_fonction_fin": 3,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "webcosting.calculpointdefonction",
+    "pk": 105,
+    "fields": {
+        "type_fonction": 10,
+        "nombre_sous_fonction_deb": 4,
+        "nombre_sous_fonction_fin": 10000,
+        "nombre_donnees_elementaires_deb": 0,
+        "nombre_donnees_elementaires_fin": 0,
+        "complexite": "faible",
+        "nombre_point_de_fonction": 0
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$24000$lSCTMNPZxL44$pky27tU1Zn44xWB0MCuQH0dA8xYRYLjK0c9DMGG/qBE=",
+        "last_login": "2016-10-14T15:25:50.728Z",
+        "is_superuser": true,
+        "username": "fchatter",
+        "first_name": "",
+        "last_name": "",
+        "email": "florent.chatterji@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2016-05-17T20:45:15.415Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
