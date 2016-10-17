@@ -5,9 +5,6 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 
-from validators import validate_lower_than_100
-
-
 
 class Coefficient(models.Model):
     """Représente les coefficients utilisés dans la méthode COCOMO
@@ -211,6 +208,12 @@ class Projet(models.Model):
     language_de_programmation = models.ForeignKey(
         LanguageDeProgrammation,
         on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
+
+    facteur_ajustement = models.IntegerField(
+        default=1,
         blank=True,
         null=True,
     )
@@ -478,12 +481,6 @@ class Projet(models.Model):
     point_de_fonction_brut = property(_point_de_fonction_brut)
 
 
-    facteur_ajustement = models.IntegerField(
-        default=1,
-        blank=True,
-        null=True,
-    )
-
     def _point_de_fonction_net(self):
         """Calcule le nombre total de points de fonctions nets du projet."""
         return self.facteur_ajustement * self.point_de_fonction_brut
@@ -643,7 +640,6 @@ class Fonction(models.Model):
     nombre_donnees_elementaires = models.PositiveIntegerField(
         'nombre de données élémentaires',
         default=0,
-        validators=[validate_lower_than_100],
     )
 
     def get_absolute_url(self):
@@ -667,7 +663,6 @@ class Fonction(models.Model):
             nombre_donnees_elementaires_deb__lte=self.nombre_donnees_elementaires,
             nombre_donnees_elementaires_fin__gte=self.nombre_donnees_elementaires
         )
-
         return calcul_point_de_fonction.nombre_point_de_fonction
 
     point_de_fonction_brut = property(_point_de_fonction_brut)
