@@ -109,7 +109,7 @@ class TypeFonction(models.Model):
     )
 
     type_fonction = models.CharField(
-        max_length=3,
+        max_length=20,
         choices=TYPE_FONCTION_CHOIX,
         default='données internes'
     )
@@ -202,21 +202,17 @@ class Projet(models.Model):
     taille_projet = models.ForeignKey(
         TailleProjet,
         on_delete=models.CASCADE,
-        blank=True,
-        null=True,
+        default='moyen'
     )
 
     language_de_programmation = models.ForeignKey(
         LanguageDeProgrammation,
         on_delete=models.CASCADE,
-        blank=True,
-        null=True,
+        default='java'
     )
 
     facteur_ajustement = models.IntegerField(
         default=1,
-        blank=True,
-        null=True,
     )
 
     FIAB_CHOIX = (
@@ -231,8 +227,6 @@ class Projet(models.Model):
         'fiabilité requise du logiciel',
         choices=FIAB_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     DONN_CHOIX = (
@@ -246,8 +240,6 @@ class Projet(models.Model):
         'taille de la base de données',
         choices=DONN_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     CPLX_CHOIX = (
@@ -263,8 +255,6 @@ class Projet(models.Model):
         'complexité du produit',
         choices=CPLX_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     TEMP_CHOIX = (
@@ -278,8 +268,6 @@ class Projet(models.Model):
         'contrainte sur le temps d\'exécution',
         choices=TEMP_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     ESPA_CHOIX = (
@@ -293,8 +281,6 @@ class Projet(models.Model):
         'contrainte sur l\'espace de stockage',
         choices=ESPA_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     VIRT_CHOIX = (
@@ -308,8 +294,6 @@ class Projet(models.Model):
         'volatilité de la machine virtuelle',
         choices=VIRT_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     CSYS_CHOIX = (
@@ -323,8 +307,6 @@ class Projet(models.Model):
         'contrainte du système de développement',
         choices=CSYS_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     APTA_CHOIX = (
@@ -339,8 +321,6 @@ class Projet(models.Model):
         'aptitude à l\'analyse',
         choices=APTA_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     EXPA_CHOIX = (
@@ -355,8 +335,6 @@ class Projet(models.Model):
         'expérience dans le domaine de l\'application',
         choices=EXPA_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     APTP_CHOIX = (
@@ -371,8 +349,6 @@ class Projet(models.Model):
         'aptitude à la programmation',
         choices=APTP_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     EXPV_CHOIX = (
@@ -386,8 +362,6 @@ class Projet(models.Model):
         'expérience de la machine virtuelle',
         choices=EXPV_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     EXPL_CHOIX = (
@@ -401,8 +375,6 @@ class Projet(models.Model):
         'expérience dans le language de programmation',
         choices=EXPL_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     PMOD_CHOIX = (
@@ -417,8 +389,6 @@ class Projet(models.Model):
         'méthode de programmation moderne',
         choices=PMOD_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     OLOG_CHOIX = (
@@ -433,8 +403,6 @@ class Projet(models.Model):
         'disponibilité d\'outils logiciels',
         choices=OLOG_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     DREQ_CHOIX = (
@@ -449,8 +417,6 @@ class Projet(models.Model):
         'écart avec le modèle Cocomo simple',
         choices=DREQ_CHOIX,
         default=1.00,
-        blank=True,
-        null=True,
     )
 
     def get_absolute_url(self):
@@ -616,7 +582,7 @@ class Fonction(models.Model):
     type_fonction = models.ForeignKey(
         TypeFonction,
         on_delete=models.CASCADE,
-        default=None
+        default='données internes'
     )
 
     nombre_sous_fonction = models.PositiveIntegerField(
