@@ -4,7 +4,10 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import Projet, Fonction
+from models import Projet, Fonction
+
+from forms import ProjetForm, CocomoForm, FonctionForm
+
 
 from django.core.urlresolvers import reverse_lazy
 
@@ -30,28 +33,32 @@ class ProjetView(generic.DetailView):
 
 class ProjetCreate(CreateView):
     model = Projet
-    fields = ['nom_projet', 'taille_projet', 'language_de_programmation']
+    form_class = ProjetForm
 
 
 class ProjetUpdate(UpdateView):
     model = Projet
-    fields = ['nom_projet', 'taille_projet', 'language_de_programmation']
+    form_class = ProjetForm
 
 
 class ProjetDelete(DeleteView):
     model = Projet
+    """We have to use reverse_lazy() here, not just reverse() as the urls 
+    are not loaded when the file is imported. See 
+    https://docs.djangoproject.com/en/1.9/topics/class-based-views/generic-editing/
+    for details"""
     success_url = reverse_lazy('webcosting:index')
 
 
 class CocomoCreate(CreateView):
     model = Projet
-    fields = ['type_projet', 'fiab', 'donn', 'cplx', 'temp', 'espa', 'virt', 'csys', 'apta', 'expa', 'aptp', 'expv', 'expl', 'pmod', 'olog', 'dreq']
+    form_class = CocomoForm
     template_name = 'webcosting/cocomo_form.html'
 
 
 class CocomoUpdate(UpdateView):
     model = Projet
-    fields = ['type_projet', 'fiab', 'donn', 'cplx', 'temp', 'espa', 'virt', 'csys', 'apta', 'expa', 'aptp', 'expv', 'expl', 'pmod', 'olog', 'dreq']
+    form_class = CocomoForm
     template_name = 'webcosting/cocomo_form.html'
 
 
@@ -74,12 +81,7 @@ class FonctionView(generic.ListView):
 
 class FonctionCreate(CreateView):
     model = Fonction
-    fields = [
-        'nom_fonction',
-        'type_fonction',
-        'nombre_sous_fonction',
-        'nombre_donnees_elementaires'
-    ]
+    form_class = FonctionForm
 
     def form_valid(self, form):
         form.instance.projet_id = self.kwargs.get('projet_id')
@@ -96,12 +98,7 @@ class FonctionCreate(CreateView):
 
 class FonctionUpdate(UpdateView):
     model = Fonction
-    fields = [
-        'nom_fonction',
-        'type_fonction',
-        'nombre_sous_fonction',
-        'nombre_donnees_elementaires'
-    ]
+    form_class = FonctionForm
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
