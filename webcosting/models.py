@@ -464,8 +464,12 @@ class Projet(models.Model):
         """
         return reverse('webcosting:projet', kwargs={'pk': self.pk})
 
-
-    def _point_de_fonction_brut(self):
+    """L'utilisation des 'property' permet d'inclure des champs calculés dans
+    le modèle. Cf cette réponse:
+    http://stackoverflow.com/questions/11465293/create-a-field-which-value-is-a-calculation-of-other-fields-values
+    """
+    @property
+    def point_de_fonction_brut(self):
         """Calcule le nombre total de points de fonctions bruts du projet."""
         fonctions = Fonction.objects.filter(projet=self.id)
 
@@ -475,21 +479,13 @@ class Projet(models.Model):
 
         return point_de_fonction_brut
 
-    """L'utilisation des 'property' permet d'inclure des champs calculés dans
-    le modèle. Cf cette réponse:
-    http://stackoverflow.com/questions/11465293/create-a-field-which-value-is-a-calculation-of-other-fields-values
-    """
-    point_de_fonction_brut = property(_point_de_fonction_brut)
-
-
-    def _point_de_fonction_net(self):
+    @property
+    def point_de_fonction_net(self):
         """Calcule le nombre total de points de fonctions nets du projet."""
         return self.facteur_ajustement * self.point_de_fonction_brut
 
-    point_de_fonction_net = property(_point_de_fonction_net)
-
-
-    def _charge_de_travail_point_de_fonction(self):
+    @property
+    def charge_de_travail_point_de_fonction(self):
         """Calcule la charge de travail par point de fonction (en jours)."""
 
         taille_projet = TailleProjet.objects.get(taille_projet=self.taille_projet)
@@ -498,18 +494,16 @@ class Projet(models.Model):
 
         return charge_de_travail * self.point_de_fonction_net
 
-    charge_de_travail_point_de_fonction = property(_charge_de_travail_point_de_fonction)
-
-
-    def _charge_de_travail_point_de_fonction_mois(self):
+    @property
+    def charge_de_travail_point_de_fonction_mois(self):
         """Calcule la charge de travail par point de fonction (en mois)."""
 
         return self.charge_de_travail_point_de_fonction / 30.0
 
-    charge_de_travail_point_de_fonction_mois = property(_charge_de_travail_point_de_fonction_mois)
 
 
-    def _kilo_ligne_de_code(self):
+    @property
+    def kilo_ligne_de_code(self):
         """Calcule le nombre de lignes de code d'un projet.
 
         L'unité utilisée est le kilo ligne de code, soit 1000 lignes de code.
@@ -524,10 +518,8 @@ class Projet(models.Model):
 
         return kilo_ligne_de_code
 
-    kilo_ligne_de_code = property(_kilo_ligne_de_code)
-
-
-    def _effort_simple(self):
+    @property
+    def effort_simple(self):
         """Calcule l'effort simple selon la méthode Cocomo.
 
         L'effort simple est une première estimation rapide de la charge de
@@ -554,10 +546,8 @@ class Projet(models.Model):
 
         return effort_simple
 
-    effort_simple = property(_effort_simple)
-
-
-    def _effort_intermediaire(self):
+    @property
+    def effort_intermediaire(self):
         """Calcule l'effort intermédiaire selon la méthode Cocomo.
 
         L'effort intermédiaire est une estimation plus complexe de la charge
@@ -575,10 +565,8 @@ class Projet(models.Model):
 
         return effort_intermediaire
 
-    effort_intermediaire = property(_effort_intermediaire)
-
-
-    def _temps_de_developpement(self):
+    @property
+    def temps_de_developpement(self):
         """Calcule le temps de développement (en mois) d'un projet.
 
         Le temps de développement est basé sur le calcul de l'effort
@@ -605,8 +593,6 @@ class Projet(models.Model):
         temps_de_developpement = round(temps_de_developpement, 2)
 
         return temps_de_developpement
-
-    temps_de_developpement = property(_temps_de_developpement)
 
 
 class Fonction(models.Model):
@@ -656,8 +642,8 @@ class Fonction(models.Model):
         """
         return reverse('webcosting:fonction', kwargs={'projet_id': self.projet.id})
 
-
-    def _point_de_fonction_brut(self):
+    @property
+    def point_de_fonction_brut(self):
         """Calcule le nombre de points de fonction bruts d'une fonction."""
         calcul_point_de_fonction = CalculPointDeFonction.objects.get(
             type_fonction=self.type_fonction,
@@ -668,11 +654,7 @@ class Fonction(models.Model):
         )
         return calcul_point_de_fonction.nombre_point_de_fonction
 
-    point_de_fonction_brut = property(_point_de_fonction_brut)
-
-
-    def _point_de_fonction_net(self):
+    @property
+    def point_de_fonction_net(self):
         """Calcule le nombre de points de fonction nets d'une fonction."""
         return self.projet.facteur_ajustement * self.point_de_fonction_brut
-
-    point_de_fonction_net = property(_point_de_fonction_net)
