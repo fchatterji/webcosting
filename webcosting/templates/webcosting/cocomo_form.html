@@ -15,15 +15,27 @@
 {% block content %}
 <h1>Projet {{ projet.nom_projet }} </h1>
 <p>Vous trouverez une notice explicative en bas de la page</p>
+
+{% load webcosting_extras %}
 <form class="form-horizontal" action="" method="post">
-    {% csrf_token %} 
-    {% include 'webcosting/form-template.html' %}
+    {% csrf_token %}
+
+
+    {{ form.non_field_errors }}
+<div class="fieldWrapper">
+    {{ form.type_projet.errors }}
+    {{ form.type_projet.label_tag }}
+    {{ form.type_projet|addCssClass:'MyClass' }}
+</div>
+
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success">Sauvegarder</button>
         </div>
     </div>
 </form>
+
 <h2>Choix du type de projet</h2>
 <ul>
     <li>
