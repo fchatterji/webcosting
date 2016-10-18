@@ -11,7 +11,7 @@ class ProjetTestCase(TestCase):
     """Fixture créée pour intégrer toutes les donnée de configuration.
 
     Pour recréer une fixture, utiliser la commande suivante pour éviter des
-    erreurs:
+    erreurs (elle exclue plusieurs éléments):
     python manage.py dumpdata -o fixture.json --indent=4 -e sessions -e admin -e contenttypes -e auth.Permission --natural-primary --natural-foreign
     """
 
@@ -20,6 +20,8 @@ class ProjetTestCase(TestCase):
         petit = TailleProjet.objects.get(taille_projet="petit")
         java = LanguageDeProgrammation.objects.get(language_de_programmation="Java")
 
+        """ la méthode Projet.objects.create() permet de créer et sauvegarder 
+        directement l'objet, contrairement à projet = Projet()"""
         projet = Projet.objects.create(
             nom_projet="projet1",
             taille_projet=petit,
@@ -27,9 +29,87 @@ class ProjetTestCase(TestCase):
             type_projet='OR',
         )
 
+        type_fonction_ENT = TypeFonction.objects.get(type_fonction='ENT')
+        type_fonction_GDE = TypeFonction.objects.get(type_fonction='GDE')
+
+        fonction1 = Fonction.objects.create(
+            projet=projet,
+            nom_fonction='fonction1',
+            type_fonction=type_fonction_ENT,
+        )
+
+        fonction2 = Fonction.objects.create(
+            projet=projet,
+            nom_fonction='fonction2',
+            type_fonction=type_fonction_GDE,
+        )
+
     def test_unicode(self):
         projet = Projet.objects.get(nom_projet="projet1")
         self.assertEqual(projet.__unicode__(), projet.nom_projet)
+
+    def test_point_de_fonction_brut_et_net(self):
+        projet = Projet.objects.get(nom_projet="projet1")
+        fonction1 = Fonction.objects.get(nom_fonction="fonction1")
+        fonction2 = Fonction.objects.get(nom_fonction="fonction2")
+
+        self.assertEqual(fonction1.point_de_fonction_brut, 0)
+        self.assertEqual(fonction2.point_de_fonction_brut, 0)
+        self.assertEqual(projet.point_de_fonction_brut, 0)
+        self.assertEqual(projet.point_de_fonction_brut, fonction1.point_de_fonction_brut + fonction2.point_de_fonction_brut)
+        self.assertEqual(projet.point_de_fonction_net, projet.point_de_fonction_brut)
+
+        fonction1.nombre_sous_fonction = 0
+        fonction1.nombre_donnees_elementaires = 1
+        fonction1.save()
+
+        self.assertEqual(fonction1.point_de_fonction_brut, 3)
+        self.assertEqual(fonction2.point_de_fonction_brut, 0)
+        self.assertEqual(projet.point_de_fonction_brut, 3)
+        self.assertEqual(projet.point_de_fonction_brut, fonction1.point_de_fonction_brut + fonction2.point_de_fonction_brut)
+        self.assertEqual(projet.point_de_fonction_net, projet.point_de_fonction_brut)
+
+        fonction1.nombre_sous_fonction = 1
+        fonction1.nombre_donnees_elementaires = 5
+        fonction1.save()
+
+        fonction2.nombre_sous_fonction = 2
+        fonction2.nombre_donnees_elementaires = 3
+        fonction2.save()
+
+        self.assertEqual(fonction1.point_de_fonction_brut, 3)
+        self.assertEqual(fonction2.point_de_fonction_brut, 5)
+        self.assertEqual(projet.point_de_fonction_brut, 8)
+        self.assertEqual(projet.point_de_fonction_brut, fonction1.point_de_fonction_brut + fonction2.point_de_fonction_brut)
+        self.assertEqual(projet.point_de_fonction_net, projet.point_de_fonction_brut)
+
+        fonction1.nombre_sous_fonction = -1
+        fonction1.nombre_donnees_elementaires = -5
+        fonction1.save()
+
+        with self.assertRaises(ObjectDoesNotExist):
+            projet.point_de_fonction_brut
+
+    def test_charge_de_travail_point_de_fonction(self):
+        projet = Projet.objects.get(nom_projet="projet1")
+        fonction1 = Fonction.objects.get(nom_fonction="fonction1")
+        fonction2 = Fonction.objects.get(nom_fonction="fonction2")
+
+        self.assertEqual(projet.charge_de_travail_point_de_fonction, 0)
+        self.assertEqual(projet.charge_de_travail_point_de_fonction_mois, 0)        
+
+        fonction1.nombre_sous_fonction = 1
+        fonction1.nombre_donnees_elementaires = 5
+        fonction1.save()
+
+        fonction2.nombre_sous_fonction = 2
+        fonction2.nombre_donnees_elementaires = 3
+        fonction2.save()
+
+        self.assertEqual(projet.charge_de_travail_point_de_fonction, 16)
+        self.assertEqual(projet.charge_de_travail_point_de_fonction_mois, 16/30.0)
+
+
 
     def test_valeurs_par_defaut(self):
         projet = Projet.objects.get(nom_projet="projet1")
@@ -101,7 +181,7 @@ class FonctionTestCase(TestCase):
         self.assertEqual(fonction.point_de_fonction_brut, 0)
         self.assertEqual(fonction.point_de_fonction_net, 0)
 
-    def test_point_de_fonction_brut(self):
+    def test_point_de_fonction_brut_et_net(self):
         fonction = Fonction.objects.get(nom_fonction='fonction1')
         fonction.nombre_sous_fonction = 1
         self.assertEqual(fonction.point_de_fonction_brut, 0)
