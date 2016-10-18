@@ -423,35 +423,35 @@
     "model": "webcosting.typefonction",
     "pk": 6,
     "fields": {
-        "type_fonction": "GDI"
+        "type_fonction": "interrogation"
     }
 },
 {
     "model": "webcosting.typefonction",
     "pk": 7,
     "fields": {
-        "type_fonction": "GDE"
+        "type_fonction": "donn\u00e9es externes"
     }
 },
 {
     "model": "webcosting.typefonction",
     "pk": 8,
     "fields": {
-        "type_fonction": "ENT"
+        "type_fonction": "entr\u00e9es"
     }
 },
 {
     "model": "webcosting.typefonction",
     "pk": 9,
     "fields": {
-        "type_fonction": "SOR"
+        "type_fonction": "sorties"
     }
 },
 {
     "model": "webcosting.typefonction",
     "pk": 10,
     "fields": {
-        "type_fonction": "INT"
+        "type_fonction": "donn\u00e9es internes"
     }
 },
 {
