@@ -8,11 +8,7 @@ Webcosting is in interactive website that helps the user to estimate the develop
 
 ## Getting started
 
-### To see the website in your browser
-
-Go to <http://fchatter.pythonanywhere.com/webcosting/>
-
-### To deploy it locally
+### Local deploy
 
 Requirements: python 2.7 , venv and pip must be installed on your computer
 
